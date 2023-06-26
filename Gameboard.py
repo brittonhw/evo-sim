@@ -28,7 +28,7 @@ class Gameboard:
         for i in range(num_creatures):
             row = random.randint(0, self.size-1)
             col = random.randint(0, self.size-1)
-            self.board[row][col] = Creature.Creature()
+            self.board[row][col] = Creature.Creature(row, col)
     
     def update_board(self):
         self.board = self.board
