@@ -4,7 +4,8 @@ class Creature:
     def __init__(self, row, col):
         self.row = row
         self.col = col
-        self.name = ''
+        self.genome = 'genome'
+        self.brain = 'brain'
 
     def set_location(self, row, col):
         self.row = row

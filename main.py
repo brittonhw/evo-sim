@@ -4,9 +4,9 @@ import Gameboard
 
 def main():
 
-    size = 100
+    size = 128
     game_board = Gameboard.Gameboard(size)
-    game_board.set_game(10)
+    game_board.set_game(1000)
 
     print(game_board)
 
