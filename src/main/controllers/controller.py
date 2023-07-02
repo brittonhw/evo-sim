@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from service import gameboard_service
+from game_logic.Gameboard import Gameboard
+
 app = FastAPI(title="Evo Sim Service", description="Evo Sim backend")
 
 
@@ -11,27 +14,14 @@ class Item(BaseModel):
 
 @app.get(
     "/gameboard/run/{size}",
-    name="Run gameboard",
-    description="Run a gameboard with dimensions (size x size)",
+    name="Get gameboard",
+    description="Returns a gameboard with dimensions (size x size).",
     tags=["Gameboard Controller"],
 )
-async def create_gameboard(size: int):
-    return {"item_id": item_id}
+async def run_sim(size: int) -> str:
+    # TODO: add a gameboard input param
+    # TODO: add an input specifying what games they'd like to be able to play
 
+    gameboard = gameboard_service.run_gameboard()
 
-@app.get(
-    "/items/{item_id}",
-    name="Get Item",
-    description="get item by id",
-    tags=["Item controller"],
-)
-async def read_item(item_id: int):
-    return {"item_id": item_id}
-
-
-@app.post(
-    "/items/", name="Upload Item", description="upload item", tags=["Item controller"]
-)
-async def create_item(item: Item):
-    # Process the item data, e.g., save to a database
-    return {"message": "Item created successfully"}
+    return str(gameboard)

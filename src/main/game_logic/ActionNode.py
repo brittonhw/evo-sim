@@ -7,7 +7,6 @@ class ActionNode:
         self.action = action
         self.activation = math.tanh(sum(inputs))
 
-
     def execute(self):
         if self.activation > 0:
             if random.random() > self.activation:
