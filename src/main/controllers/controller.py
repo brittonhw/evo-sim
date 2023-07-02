@@ -22,6 +22,6 @@ async def run_sim(size: int) -> str:
     # TODO: add a gameboard input param
     # TODO: add an input specifying what games they'd like to be able to play
 
-    gameboard = gameboard_service.run_gameboard()
+    gameboard = gameboard_service.run_gameboard(size)
 
     return str(gameboard)
