@@ -10,17 +10,15 @@ creating evolution simulator, project inspired by David Randall Miller: https://
 - [NodeJS 18](https://nodejs.org/en/download)
 
 ## running locally
-1) start the backend server
-2) start the frontend ui
 
-### running the backend
+#### 1) start the backend server
 - ``cd /backend``
 - ``/usr/local/bin/python3.11 -m venv .venv``
 - ``source .venv/bin/activate``
 - ``pip install -r requirements.txt``
 - ``python main_application.py``
 
-### running the frontend
+#### 2) start the frontend ui (in a new terminal)
 - ``cd /frontend``
 - ``npm install``
 - ``npm run-script dev``
