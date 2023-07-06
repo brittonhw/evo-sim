@@ -11,4 +11,4 @@ creating evoltion simulator, project inspired by David Randall Miller: https://w
 ## running locally
 - ``/usr/local/bin/python3.11 -m venv .venv``
 - ``source .venv/bin/activate``
-- ``python main.py``
+- ``python main_application.py``
