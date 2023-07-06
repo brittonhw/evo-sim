@@ -9,6 +9,6 @@ creating evoltion simulator, project inspired by David Randall Miller: https://w
 - [Python 3.11](https://www.python.org/downloads/)
 
 ## running locally
-- ``$/usr/local/bin/python3.11 -m venv .venv``
-- ``$source .venv/bin/activate``
-- ``$python main.py``
+- ``/usr/local/bin/python3.11 -m venv .venv``
+- ``source .venv/bin/activate``
+- ``python main.py``
