@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 type Props = {
+  promptText: string
   initialText: string;
+
 };
 
 const EditableButton = (props: Props) => {
@@ -19,11 +21,9 @@ const EditableButton = (props: Props) => {
 
   return (
     <div>
-      <button onClick={handleClick}>
-        Grid dimensions: {text} by {text}
-        <br></br>
-        <input type="number" value={text} onChange={handleTextChange} />
-        <br></br>
+      <button onClick={handleClick} style={{display:"flex", justifyContent:"space-between"}}>
+        <span style={{marginLeft: "0px"}}>{props.promptText}</span>
+        <input type="number" value={text} onChange={handleTextChange} style={{marginRight: "0px", width: "40px"}}/>
       </button>
     </div>
   );

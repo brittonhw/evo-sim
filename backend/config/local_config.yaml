@@ -1,0 +1,10 @@
+backend:
+  name: Evolution Sim
+  env: local
+
+  server:
+    host: localhost
+    port: 8300
+    allowedOrigins:
+      - "http://localhost:5300"
+      - "http://localhost"
