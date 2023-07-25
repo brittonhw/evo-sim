@@ -1,40 +1,54 @@
-import { useState } from "react";
 import "../index.css";
-
-interface Item {
-  label: string;
-  id: string;
-}
+import { drawingControlText } from "../App";
+import { useEffect, useRef } from "react";
 
 type Props = {
-  items: Item[];
+  id: number[];
   groupTitle: string;
+  handleClick: any;
+  activeDrawingControl: number;
 };
 
-const List = (props: Props) => {
-  const [itemList, _setItemList] = useState(props.items);
+interface ButtonRefs {
+  [key: number]: React.RefObject<HTMLButtonElement>;
+}
 
-  const dragStart = (e: React.DragEvent<HTMLButtonElement>, item: Item) => {
-    console.log(e.target);
-    console.log(item.id);
+const List = (props: Props) => {
+  const buttonRefs: ButtonRefs = {};
+  for (let i = 0; i < 4; i++) {
+    buttonRefs[i] = useRef(null);
+  }
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    const buttonNumber = parseInt(event.key, 10);
+    if (buttonNumber >= 1 && buttonNumber <= 4) {
+      buttonRefs[buttonNumber - 1].current?.click();
+    }
   };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    // Clean up the event listener on component unmount
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <>
       <ul>
-        <p><b>{props.groupTitle}</b></p>
-        {itemList.map((item) => (
+        <p>
+          <b>{props.groupTitle}</b>
+        </p>
+        {props.id.map((id) => (
           <div>
             <button
-              onDragStart={(e) => {
-                dragStart(e, item);
-              }}
-              //   onDragEnter={(e) => dragEnter(e, index)}
-              //   onDragEnd={drop}
-              key={item.id}
-              draggable={true}
+              ref={buttonRefs[id]}
+              className={id === props.activeDrawingControl ? "selected" : ""}
+              onClick={() => props.handleClick(id)}
+              key={id}
             >
-              {item.label}
+              {drawingControlText.get(id)}
             </button>
           </div>
         ))}

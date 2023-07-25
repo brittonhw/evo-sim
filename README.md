@@ -16,11 +16,11 @@ creating evolution simulator, project inspired by David Randall Miller: https://
 - ``/usr/local/bin/python3.11 -m venv .venv``
 - ``source .venv/bin/activate``
 - ``pip install -r requirements.txt``
-- ``python main_application.py``
+- ``python main.py``
 - explore API's at http://localhost:8300/docs
 
 #### 2) start the frontend ui (in a new terminal)
-- ``cd /frontend``
+- ``cd frontend/``
 - ``npm install``
 - ``npm run-script dev``
 - visit ui at http://localhost:{port}/
