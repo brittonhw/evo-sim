@@ -154,7 +154,7 @@ function App() {
           {isDrawing && (
             <div
               style={{
-                position: "absolute",
+                position: "fixed",
                 left: Math.min(startX, endX),
                 top: Math.min(startY, endY),
                 width: Math.abs(endX - startX),
