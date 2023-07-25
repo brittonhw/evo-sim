@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
+import { colorMap } from "../App";
 
-type gridData = number[][]
-interface Props{
-  data: gridData
+type gridData = number[][];
+interface Props {
+  data: gridData;
+  handleCellClick: any;
+  handleMouseDownDraw: any;
+  handleMouseUpDraw: any;
 }
 
-
-const Grid = (props:Props) => {
-
-  const [squareSize, setSquareSize] = useState(30); // Initial square size
+const Grid = (props: Props) => {
+  const [squareSize, setSquareSize] = useState(30);
 
   useEffect(() => {
-    // Calculate the square size based on the grid dimensions and the desired size of the grid container
     const gridSize = 600;
     const numRows = props.data.length;
     const numCols = props.data[0].length;
@@ -20,18 +21,21 @@ const Grid = (props:Props) => {
   }, [props.data]);
 
   return (
-    <div className="grid-container" style={{cursor: "crosshair"}}>
+    <div className="grid-container" style={{ cursor: "crosshair" }}>
       {props.data.map((row, rowIndex) => (
         <div key={rowIndex} style={{ display: "flex" }}>
           {row.map((_cell: any, colIndex: number) => (
             <div
               key={colIndex}
+              onClick={() => props.handleCellClick(rowIndex, colIndex)}
+              onMouseDown={() => props.handleMouseDownDraw(rowIndex, colIndex)}
+              onMouseUp={() => props.handleMouseUpDraw(rowIndex, colIndex)}
               style={{
                 width: `${squareSize}px`,
                 height: `${squareSize}px`,
-                backgroundColor: props.data[rowIndex][colIndex] == 0?  "white" : "black",
-                border: "1px solid black",
-                margin: "1px",
+                backgroundColor: colorMap.get(props.data[rowIndex][colIndex]),
+                border: ".5px solid black",
+                margin: ".5px",
               }}
             />
           ))}
