@@ -1,3 +1,4 @@
+
 type Props = {
   promptText: string;
   value: number;
@@ -8,7 +9,9 @@ const EditableButton = (props: Props) => {
   return (
     <div>
       <button style={{ display: "flex", justifyContent: "space-between" }}>
-        <span style={{ marginLeft: "0px" }}>{props.promptText}</span>
+        <span style={{ marginLeft: "0px" }}>
+          {props.promptText}
+        </span>
         <input
           type="number"
           value={props.value}

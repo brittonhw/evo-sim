@@ -48,7 +48,10 @@ const List = (props: Props) => {
               onClick={() => props.handleClick(id)}
               key={id}
             >
+              <span>
+              {/* <img src={'/1-square.svg'} alt="My Image" style={{marginRight:"15px", paddingTop:"auto", paddingBottom:"auto"}}/> */}
               {drawingControlText.get(id)}
+              </span>
             </button>
           </div>
         ))}
