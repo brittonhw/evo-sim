@@ -1,4 +1,4 @@
-from game_logic.Gameboard import Gameboard
+from src.main.game_logic.Gameboard import Gameboard
 
 class GameboardService:
 

@@ -12,15 +12,19 @@ creating evolution simulator, project inspired by David Randall Miller: https://
 ## running locally
 
 #### 1) start the backend server
-- ``cd backend/``
-- ``/usr/local/bin/python3.11 -m venv .venv``
-- ``source .venv/bin/activate``
-- ``pip install -r requirements.txt``
-- ``python main.py``
-- explore API's at http://localhost:8300/docs
+1) `cd backend/`
+2) add the current directory to your pythonpath
+    - `export PYTHONPATH=$PYTHONPATH:.`
+3) create a venv
+    - `/usr/local/bin/python3.11 -m venv .venv`
+    - `source .venv/bin/activate`
+    - `pip install -r requirements.txt`
+4) start the application
+    - `python src/main/main.py`
+    - explore API's at http://localhost:8300/docs
 
 #### 2) start the frontend ui (in a new terminal)
-- ``cd frontend/``
-- ``npm install``
-- ``npm run-script dev``
+- `cd frontend/`
+- `npm install`
+- `npm run-script dev`
 - visit ui at http://localhost:{port}/

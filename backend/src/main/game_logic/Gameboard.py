@@ -1,6 +1,6 @@
 import random
 
-from game_logic import Creature
+from src.main.game_logic.Creature import Creature
 
 
 class Gameboard:

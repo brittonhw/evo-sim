@@ -1,6 +1,7 @@
-import "../index.css";
-import { drawingControlText } from "../App";
+import "./grid.css";
+import { drawingControlText } from "./GridView";
 import { useEffect, useRef } from "react";
+import { CircleFill } from "react-bootstrap-icons";
 
 type Props = {
   id: number[];
@@ -49,8 +50,10 @@ const List = (props: Props) => {
               key={id}
             >
               <span>
-              {/* <img src={'/1-square.svg'} alt="My Image" style={{marginRight:"15px", paddingTop:"auto", paddingBottom:"auto"}}/> */}
-              {drawingControlText.get(id)}
+                {/* todo add some icons here */}
+                {/* <CircleFill/> */}
+                {/* <img src={'/1-square.svg'} alt="My Image" style={{marginRight:"15px", paddingTop:"auto", paddingBottom:"auto"}}/> */}
+                {drawingControlText.get(id)}
               </span>
             </button>
           </div>
