@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { colorMap } from "../App";
+import { colorMap } from "./GridView";
 
 type gridData = number[][];
 interface Props {

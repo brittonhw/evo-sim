@@ -1,8 +1,7 @@
 from typing import Optional
 from pydantic import BaseModel
 
-from utils.Color import Color
-
+from src.main.utils.Color import Color
 
 class Item(BaseModel):
     name: Optional[str]

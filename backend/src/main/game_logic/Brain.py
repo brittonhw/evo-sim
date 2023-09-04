@@ -1,4 +1,4 @@
-from game_logic import ActionNode
+from src.main.game_logic.ActionNode import ActionNode
 
 
 class Brain:
@@ -7,4 +7,5 @@ class Brain:
         self.move_node = ActionNode.ActionNode([1, 2, 3], "move")
 
     def wire_brain(self):
+        # TODO: implement
         pass
