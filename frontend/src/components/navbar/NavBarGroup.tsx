@@ -2,10 +2,18 @@ import { useState } from "react";
 import DotsButton from "./DotsButton";
 import PlusButton from "./PlusButton";
 
+interface MenuItem {
+  name: string;
+  emoji: string; // you can set an emoji right in vscode
+  id: string;
+}
+
 interface Props {
-  menuItems: string[];
+  menuItems: MenuItem[];
   title: string;
   displayMenuButtons: boolean;
+  selectedMenuId?: string;
+  updateSelectedMenuId: (id: string) => void;
 }
 
 const NavBarGroup = (props: Props) => {
@@ -14,7 +22,7 @@ const NavBarGroup = (props: Props) => {
   const showColor2 = "#898989";
   const hideColor2 = "#f7f7f5";
 
-  const [showDotsModal, setShowDotsModal] = useState(false);
+  const [showDotsModal, setShowDotsModal] = useState(false); // TODO: add dots action items
 
   const handleClick = (e: string) => {
     console.log(e);
@@ -49,16 +57,24 @@ const NavBarGroup = (props: Props) => {
           />
         </div>
       </div>
-      {props.menuItems.map((val: string, idx: number) => (
-        <div className="navbar-item">
-          {val}
+      {props.menuItems.map((item: MenuItem, idx: number) => (
+        <div
+          className="navbar-item"
+          id={item.id}
+          style={{
+            backgroundColor:
+              props.selectedMenuId == item.id ? "rgb(237, 237, 237)" : "",
+          }}
+          onClick={() => {props.updateSelectedMenuId(item.id)}}
+        >
+          {item.emoji}&nbsp;{item.name}
           <div style={{ marginLeft: "auto", display: "flex" }}>
             <DotsButton
               show={props.displayMenuButtons}
               showColor={showColor2}
               hideColor={hideColor2}
               handleClick={handleClick}
-            id={"test-subgroup-id-" + val} // TODO set the id from backend
+              id={"test-subgroup-id-" + item.id} // TODO set the id from backend
             ></DotsButton>
           </div>
         </div>

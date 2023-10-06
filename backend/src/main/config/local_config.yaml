@@ -8,3 +8,7 @@ backend:
     allowedOrigins:
       - "http://localhost:5300"
       - "http://localhost"
+
+  s3:
+    port: 9000
+    dataFolder: /localS3

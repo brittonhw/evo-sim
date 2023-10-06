@@ -96,18 +96,3 @@ button:focus-visible {
   margin-top: 0;
   margin-bottom: 0;
 }
-
-.env {
-  height: 2.2em;
-  margin-top: auto;
-  margin-bottom: auto;
-  font-size: smaller;
-  border-radius: 15px;
-  width: 120px;
-  background-color: #f9cd07;
-  /* justify-content: center; */
-  text-align: center;
-  padding-left: auto;
-  padding-right: auto;
-  margin-left: 15px;
-}

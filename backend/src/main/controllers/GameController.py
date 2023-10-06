@@ -1,15 +1,26 @@
+from src.main.service.dto.GameboardDTO import GameboardDTO
 from src.main.utils.Color import Color
 from src.main.utils.Item import Item
+from src.main.utils.Logger import logger
 
 from src.main.service.GameboardService import GameboardService
 
 
 from fastapi import APIRouter
 
-router = APIRouter(tags=['Gameboard Controller'])
+router = APIRouter(tags=["Gameboard Controller"])
 
 gameboard_service = GameboardService()
 
+
+@router.post(
+    "/save",
+    name="save a gameboard",
+    description="saves a gameboard"
+)
+async def save_gameboard(gameboard_dto: GameboardDTO) -> GameboardDTO:
+    logger.info("saving a gameboard!")
+    return gameboard_dto
 
 @router.get(
     "/gameboard/run/{size}",
@@ -24,13 +35,13 @@ async def run_sim(size: int) -> str:
 
     return str(gameboard)
 
+
 @router.get(
     "/ping/{number}",
     name="ping a number",
     description="Returns the number // 2",
 )
 async def ping_number2(number: int) -> Item:
-
     item = Item()
-    
+
     return item

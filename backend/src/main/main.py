@@ -12,13 +12,13 @@ with open('src/main/config/local_config.yaml', 'r') as file:
     config = yaml.safe_load(file)
 
 app = FastAPI(title="Evo Sim Service", description="Evo Sim backend")
-app.include_router(game_router)
-app.include_router(streaming_router)
+app.include_router(game_router, prefix="/gameboard")
+app.include_router(streaming_router, prefix="/streaming")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=config['backend']['server']['allowedOrigins'],
     allow_credentials=True,
-    allow_methods=["GET"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -33,6 +33,7 @@ if __name__ == "__main__":
     port = config['backend']['server']['port']
 
     server_util.print_startup_message(server_path, host, port)
+    # server_util.start_local_s3("9300", "s3")
 
     uvicorn.run(app_server, host=host, port=port)
 
