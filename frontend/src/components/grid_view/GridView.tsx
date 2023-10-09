@@ -6,6 +6,9 @@ import { useState } from "react";
 import { useAlert } from "../../contexts/AlertContext";
 import { StickerType } from "../header/HeaderSticker";
 import { postData } from "../../api/RestTemplate";
+import { ColorMap } from "../../util/Color";
+
+
 
 export const drawingControls = {
   clear: 0,
@@ -23,11 +26,11 @@ export const drawingControlText = new Map([
 ]);
 
 export const colorMap = new Map([
-  [drawingControls.clear, "white"],
-  [drawingControls.barrier, "black"],
-  [drawingControls.radioactive, "yellow"],
-  [drawingControls.safezone, "lightgreen"],
-  [drawingControls.creature, "cornflowerblue"],
+  [drawingControls.clear, ColorMap.WHITE],
+  [drawingControls.barrier, ColorMap.BLACK],
+  [drawingControls.radioactive, ColorMap.LIGHTYELLOW],
+  [drawingControls.safezone, ColorMap.GREEN],
+  [drawingControls.creature, ColorMap.BLUE],
 ]);
 
 export interface GameboardDTO {
@@ -293,13 +296,13 @@ const GridView = ({
             <ul>
               <br></br>
               <button
-                style={{ display: "flex", backgroundColor: "lightgreen" }}
+                style={{ display: "flex", backgroundColor: ColorMap.GREEN }}
                 onClick={() => handleSave()}
               >
                 save
               </button>
               <button
-                style={{ display: "flex", backgroundColor: "lightpink" }}
+                style={{ display: "flex", backgroundColor: ColorMap.PINK }}
                 onClick={() => handleReset()}
               >
                 reset

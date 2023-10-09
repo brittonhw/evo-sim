@@ -1,3 +1,4 @@
+from src.main.utils.encoders.drawing_encoder import encode_gameboard_dto
 from src.main.service.dto.GameboardDTO import GameboardDTO
 from src.main.utils.Color import Color
 from src.main.utils.Item import Item
@@ -20,6 +21,13 @@ gameboard_service = GameboardService()
 )
 async def save_gameboard(gameboard_dto: GameboardDTO) -> GameboardDTO:
     logger.info("saving a gameboard!")
+
+    logger.info("gameboard dimensions: " + str(len(gameboard_dto.data)) + " rows, " + str(len(gameboard_dto.data[0])) + " cols")
+
+    logger.warn("about to log a badass bytes array representation!")
+
+    x = encode_gameboard_dto(gameboard_dto)
+
     return gameboard_dto
 
 @router.get(

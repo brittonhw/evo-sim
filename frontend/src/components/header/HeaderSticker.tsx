@@ -1,3 +1,4 @@
+import { ColorMap } from "../../util/Color";
 import "./HeaderSticker.css";
 
 interface Props {
@@ -12,9 +13,9 @@ export enum StickerType {
 }
 
 const StickerTypeColorMap = new Map([
-  [StickerType.Info, "#f9cd07"],
-  [StickerType.SuccessAlert, "lightgreen"],
-  [StickerType.ErrorAlert, "lightpink"],
+  [StickerType.Info, ColorMap.YELLOW],
+  [StickerType.SuccessAlert, ColorMap.GREEN],
+  [StickerType.ErrorAlert, ColorMap.PINK],
 ]);
 
 const HeaderSticker = (props: Props) => {

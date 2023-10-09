@@ -1,12 +1,13 @@
 import Navbar from "./components/navbar/NavBar";
 import GridView from "./components/grid_view/GridView";
 import "./components/navbar/navbar.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InfoView from "./components/info_view/InfoView";
 import SimulationView from "./components/simulation_view/SimulationView";
 import Header from "./components/header/Header";
 import { AlertProvider } from "./contexts/AlertContext";
 import PlaybackView from "./components/playback_view/PlaybackView";
+import RunView from "./components/run_view/RunView";
 
 const App = () => {
   // TODO update the menu id logic
@@ -45,8 +46,9 @@ const App = () => {
                 setCols={setCols}
               />
             ) : null}
-            {selectedMenuId == "1c" ? <SimulationView /> : null}
+            {selectedMenuId == "1c" ? <RunView /> : null}
             {selectedMenuId == "1d" ? <PlaybackView /> : null}
+            {selectedMenuId == "1e" ? <SimulationView /> : null}
           </div>
         </div>
       </AlertProvider>
