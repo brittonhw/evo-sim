@@ -2,13 +2,11 @@ import List from "./List";
 import Grid from "./Grid";
 import EditableButton from "./EditableButton";
 import "./grid.css";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { useAlert } from "../../contexts/AlertContext";
 import { StickerType } from "../header/HeaderSticker";
 import { postData } from "../../api/RestTemplate";
 import { ColorMap } from "../../util/Color";
-
-
 
 export const drawingControls = {
   clear: 0,
@@ -34,8 +32,9 @@ export const colorMap = new Map([
 ]);
 
 export interface GameboardDTO {
-  id: string
+  id: string;
   data: number[][];
+  encoded_data: string;
 }
 
 interface Props {
@@ -59,9 +58,22 @@ const GridView = ({
     drawingControls.clear
   );
 
+  // const [inputCols, setInputCols] = useState(64);
+  // const [inputRows, setInputRows] = useState(64);
+
   const handleRowChange = (event: any) => {
+    console.log(event);
     let valueInteger: number = parseInt(event.target.value);
+
+
+    // TODO this is helpful if the constant changing is annoying
+    // setInputRows(valueInteger);
+    // if (event.keyCode !== 13) {
+    //   return;
+    // }
+
     valueInteger = valueInteger > 0 ? valueInteger : 1;
+
     if (valueInteger < rows) {
       const updatedGrid = gridData.slice(0, valueInteger);
       setGridData(updatedGrid);
@@ -76,7 +88,15 @@ const GridView = ({
 
   const handleColChange = (event: any) => {
     let valueInteger: number = parseInt(event.target.value);
+
+    // TODO this is helpful if the constant changing is annoying
+    // setInputRows(valueInteger);
+    // if (event.keyCode !== 13) {
+    //   return;
+    // }
+
     valueInteger = valueInteger > 0 ? valueInteger : 1;
+
     if (valueInteger < cols) {
       const updatedGrid = gridData.map((row) => row.slice(0, valueInteger));
       setGridData(updatedGrid);
@@ -204,20 +224,18 @@ const GridView = ({
   async function handleSave() {
     showAlert("Saving board data...", StickerType.Info);
     // TODO add gameboard id logic
-    const gameboardDTO: GameboardDTO = {id: '1a', data: gridData}
-    const saveUrl = "http://localhost:8300/evo-sim/gameboard/save"
+    const gameboardDTO: GameboardDTO = { id: "1a", data: gridData, encoded_data: ""};
+    const saveUrl = "http://localhost:8300/evo-sim/gameboard/save";
     await postData(saveUrl, gameboardDTO)
-    .then((x) => {
-      console.log("response: " + x)
-      showAlert("Saved board data.", StickerType.SuccessAlert);
-    })
-    .catch((error) => {
-      console.log("response: " + error)
-      showAlert("could not save data.", StickerType.ErrorAlert);
-    }
-    )
-    
-  };
+      .then((x) => {
+        console.log("response: " + x);
+        showAlert("Saved board data.", StickerType.SuccessAlert);
+      })
+      .catch((error) => {
+        console.log("response: " + error);
+        showAlert("could not save data.", StickerType.ErrorAlert);
+      });
+  }
 
   return (
     <div>
@@ -264,11 +282,13 @@ const GridView = ({
               <EditableButton
                 promptText={"rows:"}
                 value={rows}
+                handleKeyDown={handleRowChange}
                 handleTextChange={handleRowChange}
               />
               <EditableButton
                 promptText={"cols:"}
                 value={cols}
+                handleKeyDown={handleColChange}
                 handleTextChange={handleColChange}
               />
             </ul>

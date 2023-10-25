@@ -1,6 +1,5 @@
-
 interface Props {
-    gridData: string[][]
+  gridData: string[][];
 }
 
 const PlaybackGrid = (props: Props) => {
@@ -12,7 +11,13 @@ const PlaybackGrid = (props: Props) => {
             <div
               key={colIndex}
               className="grid-cell"
-              style={{ backgroundColor: color, height: "6px", width: "6px" }}
+              style={{
+                backgroundColor: color,
+                height: "6px",
+                width: "6px",
+                border: ".5px solid black",
+                margin: ".5px",
+              }}
             />
           ))}
         </div>

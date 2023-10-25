@@ -88,9 +88,7 @@ const PlaybackGridContainer = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-
-
+    <>
       <PlaybackGrid gridData={gridData}/>
       
       <div className="properties-pane">
@@ -110,6 +108,7 @@ const PlaybackGridContainer = () => {
               frame {framesPlayed}/{totalFrames}
             </p>
           </ul>
+          <ul><p>rows: {gridData[0].length},  cols: {gridData.length}</p></ul>
           <ul>
             <button
               style={{ display: "flex", backgroundColor: ColorMap.GREEN }}
@@ -120,7 +119,7 @@ const PlaybackGridContainer = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

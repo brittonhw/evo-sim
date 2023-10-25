@@ -1,4 +1,5 @@
 import PlaybackGrid from "./PlaybackGridContainer";
+import WorldTimeline from "./WorldTimeline";
 
 const PlaybackView = () => {
     return (
@@ -6,8 +7,10 @@ const PlaybackView = () => {
         <div className="playback-view">
           <p>Play back your simulation here.</p>
         </div>
-
-        <PlaybackGrid/>
+        <div style={{display: "flex"}}>
+          <WorldTimeline/>
+          <PlaybackGrid/>
+        </div>
       </>
     );
   };
