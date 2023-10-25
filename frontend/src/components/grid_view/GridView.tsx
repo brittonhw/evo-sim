@@ -7,6 +7,8 @@ import { useAlert } from "../../contexts/AlertContext";
 import { StickerType } from "../header/HeaderSticker";
 import { postData } from "../../api/RestTemplate";
 import { ColorMap } from "../../util/Color";
+import { GameboardDTO } from "../../models/dto";
+import { GameboardSize } from "../../models/enum";
 
 export const drawingControls = {
   clear: 0,
@@ -30,12 +32,6 @@ export const colorMap = new Map([
   [drawingControls.safezone, ColorMap.GREEN],
   [drawingControls.creature, ColorMap.BLUE],
 ]);
-
-export interface GameboardDTO {
-  id: string;
-  data: number[][];
-  encoded_data: string;
-}
 
 interface Props {
   gridData: number[][];
@@ -64,7 +60,6 @@ const GridView = ({
   const handleRowChange = (event: any) => {
     console.log(event);
     let valueInteger: number = parseInt(event.target.value);
-
 
     // TODO this is helpful if the constant changing is annoying
     // setInputRows(valueInteger);
@@ -224,7 +219,12 @@ const GridView = ({
   async function handleSave() {
     showAlert("Saving board data...", StickerType.Info);
     // TODO add gameboard id logic
-    const gameboardDTO: GameboardDTO = { id: "1a", data: gridData, encoded_data: ""};
+    const gameboardDTO: GameboardDTO = {
+      id: "1a",
+      size: GameboardSize.MED,
+      data: gridData,
+      encoded_data: [],
+    };
     const saveUrl = "http://localhost:8300/evo-sim/gameboard/save";
     await postData(saveUrl, gameboardDTO)
       .then((x) => {

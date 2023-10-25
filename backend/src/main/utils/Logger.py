@@ -15,7 +15,7 @@ handler.setLevel(logging.INFO)
 
 # Create a formatter to define the log message format
 formatter = ColoredFormatter(
-    '%(log_color)s%(levelname)s:     %(asctime)s - %(name)s.%(funcName)s -- %(message)s',
+    '%(log_color)s%(levelname)s:     %(asctime)s -- %(module)s.%(funcName)s:%(lineno)d -- %(message)s',
     datefmt="%Y-%m-%d %H:%M:%S",
     reset=True,
     log_colors={

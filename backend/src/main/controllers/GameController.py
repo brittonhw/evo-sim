@@ -25,14 +25,14 @@ gameboard_service = GameboardService()
 )
 async def save_gameboard(gameboard_dto_new: GameboardDTO,
                          use_encoded: bool | None = False,
-                         use_example_data: bool | None = True,
-                         size: GameboardSize = GameboardSize.MED) -> GameboardDTO:
+                         use_example_data: bool | None = False) -> GameboardDTO:
     logger.info("saving a gameboard!")
 
-    gameboard_dto = GameboardDTO(size=size)
+    gameboard_dto = GameboardDTO(size=gameboard_dto_new.size, data=gameboard_dto_new.data)
 
     if use_encoded:
         # TODO: decode and populate data
+        # gameboard_dto.data = decode_encoded_data(dto) 
         gameboard_dto.data = [[0, 0], [0, 0]]
 
     if use_example_data:

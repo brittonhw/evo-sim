@@ -10,9 +10,11 @@ def print_startup_message(server_path: str, host: str, port: str) -> str:
         dashes,
         "RONNY BROS. LLC",
         dashes,
-        "Starting 'evo-sim'",
+        "Welcome to 'evo-sim'",
         dashes,
         "Check out the Swagger UI at http://{0}:{1}{2}/docs".format(host, port, server_path),
+        dashes,
+        "Check out the ReDoc at http://{0}:{1}{2}/redoc".format(host, port, server_path),
         dashes,
         "\n"
         ])
