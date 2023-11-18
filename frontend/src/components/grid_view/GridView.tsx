@@ -217,7 +217,7 @@ const GridView = ({
   const { showAlert } = useAlert();
 
   async function handleSave() {
-    showAlert("Saving board data...", StickerType.Info);
+    showAlert("Saving board data...", StickerType.Info, 2);
     // TODO add gameboard id logic
     const gameboardDTO: GameboardDTO = {
       id: "1a",
@@ -229,11 +229,11 @@ const GridView = ({
     await postData(saveUrl, gameboardDTO)
       .then((x) => {
         console.log("response: " + x);
-        showAlert("Saved board data.", StickerType.SuccessAlert);
+        showAlert("Saved board data.", StickerType.SuccessAlert, 12);
       })
       .catch((error) => {
         console.log("response: " + error);
-        showAlert("could not save data.", StickerType.ErrorAlert);
+        showAlert("could not save data.", StickerType.ErrorAlert, 7);
       });
   }
 

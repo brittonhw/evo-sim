@@ -1,13 +1,13 @@
 import Navbar from "./components/navbar/NavBar";
 import GridView from "./components/grid_view/GridView";
 import "./components/navbar/navbar.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import InfoView from "./components/info_view/InfoView";
-import SimulationView from "./components/simulation_view/SimulationView";
+import AnalyticsView from "./components/analytics_view/AnalyticsView";
 import Header from "./components/header/Header";
 import { AlertProvider } from "./contexts/AlertContext";
-import PlaybackView from "./components/playback_view/PlaybackView";
 import RunView from "./components/run_view/RunView";
+import PlaybackView from "./components/playback_view/PlaybackView";
 
 const App = () => {
   // TODO update the menu id logic
@@ -20,39 +20,37 @@ const App = () => {
   );
 
   return (
-    <>
-      <AlertProvider>
-        <div
-          className="app"
-          style={{
-            display: "flex",
-            height: "100vh",
-          }}
-        >
-          <Navbar
-            selectedMenuId={selectedMenuId}
-            setSelectedMenuId={setSelectedMenuId}
-          />
-          <div style={{ display: "inline" }}>
-            <Header />
-            {selectedMenuId == "1a" ? <InfoView /> : null}
-            {selectedMenuId == "1b" ? (
-              <GridView
-                gridData={gridData}
-                setGridData={setGridData}
-                rows={rows}
-                setRows={setRows}
-                cols={cols}
-                setCols={setCols}
-              />
-            ) : null}
-            {selectedMenuId == "1c" ? <RunView /> : null}
-            {selectedMenuId == "1d" ? <PlaybackView /> : null}
-            {selectedMenuId == "1e" ? <SimulationView /> : null}
-          </div>
+    <AlertProvider>
+      <div
+        className="app"
+        style={{
+          display: "flex",
+          height: "100vh",
+        }}
+      >
+        <Navbar
+          selectedMenuId={selectedMenuId}
+          setSelectedMenuId={setSelectedMenuId}
+        />
+        <div style={{ display: "inline" }}>
+          <Header />
+          {selectedMenuId == "1a" ? <InfoView /> : null}
+          {selectedMenuId == "1b" ? (
+            <GridView
+              gridData={gridData}
+              setGridData={setGridData}
+              rows={rows}
+              setRows={setRows}
+              cols={cols}
+              setCols={setCols}
+            />
+          ) : null}
+          {selectedMenuId == "1c" ? <RunView /> : null}
+          {selectedMenuId == "1d" ? <PlaybackView /> : null}
+          {selectedMenuId == "1e" ? <AnalyticsView /> : null}
         </div>
-      </AlertProvider>
-    </>
+      </div>
+    </AlertProvider>
   );
 };
 

@@ -3,3 +3,11 @@
 
 # virtual env
 .venv
+
+# tmp
+.tmp
+
+.idea
+
+.vscode
+.DS_Store

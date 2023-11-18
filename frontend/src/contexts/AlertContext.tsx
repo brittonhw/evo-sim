@@ -8,7 +8,7 @@ interface Alert {
 
 interface AlertContextType {
   alert: Alert | null;
-  showAlert: (message: string, type?: StickerType) => void;
+  showAlert: (message: string, type?: StickerType, seconds?: number) => void;
 }
 
 const AlertContext = createContext<AlertContextType | undefined>(undefined);
@@ -28,11 +28,11 @@ interface AlertProviderProps {
 export const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
   const [alert, setAlert] = useState<Alert | null>(null);
 
-  const showAlert = (message: string, type = StickerType.Info) => {
+  const showAlert = (message: string, type = StickerType.Info, seconds = 3) => {
     setAlert({ message, type });
     setTimeout(() => {
       setAlert(null);
-    }, 3000); // Hide the alert after 3 seconds
+    }, seconds * 1000); // Hide the alert after 3000 ms
   };
 
   return (

@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const PlaybackView = () => {
+const AnalyticsView = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const animationFrameIdRef = useRef<number | null>(null);
+  const [isAnimating, setIsAnimating] = useState(true); // State to control animation
+  const animationFrameIdRef = useRef<number | null>(null); // Ref to store the animation frame ID
 
   // Function to generate a random color
   const getRandomColor = () => {
@@ -65,4 +65,4 @@ const PlaybackView = () => {
   );
 };
 
-export default PlaybackView;
+export default AnalyticsView;
