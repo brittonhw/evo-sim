@@ -3,7 +3,7 @@ import os
 
 from src.main.config.Config import config
 from src.main.game_logic.Gameboard import Gameboard
-from src.main.service.dto.GameboardDTO import GameboardDTO
+from src.main.model.dto.GameboardDTO import GameboardDTO
 from src.main.utils.Logger import logger
 
 LOCAL_S3_PATH = os.path.join('.tmp', 's3')

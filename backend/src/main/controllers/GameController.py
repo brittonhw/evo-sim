@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
 from src.main.service.GameboardService import GameboardService
-from src.main.service.dto.GameboardDTO import GameboardDTO
-from src.main.service.enum.enums import GameboardSize
+from src.main.model.dto.GameboardDTO import GameboardDTO
+from src.main.model.enum.enums import GameboardSize
 from src.main.utils.Item import Item
 from src.main.utils.Logger import logger
 from src.main.utils.sample_gameboards.sample_gameboard import get_sample_gameboard
