@@ -13,7 +13,7 @@ const Navbar = (props: Props) => {
     {"name": "Info", emoji:"📚", "id": "1a"},
     {"name": "Edit", emoji:"🖌️","id": "1b"},
     {"name": "Run", emoji:"⏯️","id": "1c"},
-    {"name": "Playback", emoji:"🎥", "id": "1d"},
+    // {"name": "Playback", emoji:"🎥", "id": "1d"},
     {"name": "Analytics", emoji:"🧬", "id": "1e"},
   ]
 
