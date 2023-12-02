@@ -8,5 +8,5 @@
 .tmp
 
 .idea
-.vscode
+**/.vscode/**
 .DS_Store
