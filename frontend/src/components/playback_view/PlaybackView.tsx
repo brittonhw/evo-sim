@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import EditableButton from "../grid_view/EditableButton";
 import { GameboardSize } from "../../models/enum";
 
+
+
+// this component is broken (TODO)
 const PlaybackView = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
