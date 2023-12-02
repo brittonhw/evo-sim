@@ -6,7 +6,6 @@ from src.main.service.enum.enums import GameboardSize
 from src.main.utils.Item import Item
 from src.main.utils.Logger import logger
 from src.main.utils.sample_gameboards.sample_gameboard import get_sample_gameboard
-from src.main.utils.video.video_generator import generate_frames, generate_video
 
 router = APIRouter(tags=["Gameboard Controller"])
 
