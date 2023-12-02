@@ -52,18 +52,6 @@ async def get_a_gameboard() -> GameboardDTO:
 
 
 @router.get(
-    "/video",
-    name="generate video",
-    description="generates an mp4",
-)
-async def generate_mp4():
-    generate_frames()
-    generate_video()
-
-
-
-
-@router.get(
     "/ping/{number}",
     name="ping a number",
     description="Returns the number // 2",
