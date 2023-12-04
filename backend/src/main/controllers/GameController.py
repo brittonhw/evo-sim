@@ -1,28 +1,54 @@
-from src.main.utils.Color import Color
-from src.main.utils.Item import Item
-
-from src.main.service.GameboardService import GameboardService
-
-
 from fastapi import APIRouter
 
-router = APIRouter(tags=['Gameboard Controller'])
+from src.main.service.GameboardService import GameboardService
+from src.main.model.dto.GameboardDTO import GameboardDTO
+from src.main.model.enum.enums import GameboardSize
+from src.main.utils.Item import Item
+from src.main.utils.Logger import logger
+from src.main.utils.sample_gameboards.sample_gameboard import get_sample_gameboard
+
+router = APIRouter(tags=["Gameboard Controller"])
 
 gameboard_service = GameboardService()
 
 
-@router.get(
-    "/gameboard/run/{size}",
-    name="Get a random gameboard",
-    description="Returns a gameboard with dimensions (size x size).",
+@router.post(
+    "/save",
+    name="save a gameboard",
+    description="saves a gameboard"
 )
-async def run_sim(size: int) -> str:
-    # TODO: add a gameboard input param
-    # TODO: add an input specifying what games they'd like to be able to play
+async def save_gameboard(gameboard_dto_new: GameboardDTO,
+                         use_example_data: bool | None = False) -> GameboardDTO:
+    logger.info("saving a gameboard!")
 
-    gameboard = gameboard_service.run_gameboard(size)
+    gameboard_dto = GameboardDTO(size=gameboard_dto_new.size, data=gameboard_dto_new.data)
 
-    return str(gameboard)
+    if use_example_data:
+        gameboard_dto.data = get_sample_gameboard()
+
+    gameboard_service.save_gameboard(gameboard_dto)
+
+    logger.info("gameboard dimensions: " + str(len(gameboard_dto.data)) + \
+                 " rows, " + str(len(gameboard_dto.data[0])) + " cols")
+
+    gameboard_dto.data = None
+    return gameboard_dto
+
+
+@router.get(
+    "/run/{size}",
+    name="Get a sample gameboard",
+    description="Returns a gameboard.",
+)
+async def get_a_gameboard() -> GameboardDTO:
+    size: GameboardSize = GameboardSize.MED
+    example_gameboard_data = get_sample_gameboard()
+    gameboard_dto = GameboardDTO(
+        size=size,
+        data=example_gameboard_data)
+
+    return gameboard_dto
+
 
 @router.get(
     "/ping/{number}",
@@ -30,7 +56,6 @@ async def run_sim(size: int) -> str:
     description="Returns the number // 2",
 )
 async def ping_number2(number: int) -> Item:
-
     item = Item()
-    
+
     return item

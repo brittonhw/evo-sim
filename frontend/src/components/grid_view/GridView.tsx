@@ -2,7 +2,13 @@ import List from "./List";
 import Grid from "./Grid";
 import EditableButton from "./EditableButton";
 import "./grid.css";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
+import { useAlert } from "../../contexts/AlertContext";
+import { StickerType } from "../header/HeaderSticker";
+import { EVO_SIM_BASE_URL, postData } from "../../api/RestTemplate";
+import { ColorMap } from "../../util/Color";
+import { GameboardDTO } from "../../models/dto";
+import { GameboardSize } from "../../models/enum";
 
 export const drawingControls = {
   clear: 0,
@@ -13,60 +19,89 @@ export const drawingControls = {
 };
 
 export const drawingControlText = new Map([
-  [drawingControls.clear, "clear"],
-  [drawingControls.barrier, "barrier"],
-  [drawingControls.radioactive, "radioactive zone"],
-  [drawingControls.safezone, "safe zone"],
+  [drawingControls.clear, "1️⃣ clear"],
+  [drawingControls.barrier, "2️⃣ barrier"],
+  [drawingControls.radioactive, "3️⃣ radioactive zone"],
+  [drawingControls.safezone, "4️⃣ safe zone"],
 ]);
 
 export const colorMap = new Map([
-  [drawingControls.clear, "white"],
-  [drawingControls.barrier, "black"],
-  [drawingControls.radioactive, "yellow"],
-  [drawingControls.safezone, "lightgreen"],
-  [drawingControls.creature, "lightpurple"],
+  [drawingControls.clear, ColorMap.WHITE],
+  [drawingControls.barrier, ColorMap.BLACK],
+  [drawingControls.radioactive, ColorMap.LIGHTYELLOW],
+  [drawingControls.safezone, ColorMap.GREEN],
+  [drawingControls.creature, ColorMap.BLUE],
 ]);
 
-const GridView = () => {
-  const [rows, setRows] = useState(64);
-  const [cols, setCols] = useState(64);
+interface Props {
+  gridData: number[][];
+  setGridData: React.Dispatch<React.SetStateAction<any[][]>>;
+  rows: number;
+  setRows: React.Dispatch<React.SetStateAction<number>>;
+  cols: number;
+  setCols: React.Dispatch<React.SetStateAction<number>>;
+}
 
+const GridView = ({
+  gridData,
+  setGridData,
+  rows,
+  setRows,
+  cols,
+  setCols,
+}: Props) => {
   const [activeDrawingControl, setActiveDrawingControl] = useState(
     drawingControls.clear
   );
 
-  const [gridData, setGridata] = useState(
-    Array.from({ length: rows }, () => Array(cols).fill(0))
-  );
+  // const [inputCols, setInputCols] = useState(64);
+  // const [inputRows, setInputRows] = useState(64);
 
   const handleRowChange = (event: any) => {
+    console.log(event);
     let valueInteger: number = parseInt(event.target.value);
+
+    // TODO this is helpful if the constant changing is annoying
+    // setInputRows(valueInteger);
+    // if (event.keyCode !== 13) {
+    //   return;
+    // }
+
     valueInteger = valueInteger > 0 ? valueInteger : 1;
+
     if (valueInteger < rows) {
       const updatedGrid = gridData.slice(0, valueInteger);
-      setGridata(updatedGrid);
+      setGridData(updatedGrid);
     } else {
       const rowsToAdd = valueInteger - rows;
       const newRows = new Array(rowsToAdd).fill(new Array(cols).fill(0));
       const updatedGrid = [...gridData, ...newRows];
-      setGridata(updatedGrid);
+      setGridData(updatedGrid);
     }
     setRows(valueInteger);
   };
 
   const handleColChange = (event: any) => {
     let valueInteger: number = parseInt(event.target.value);
+
+    // TODO this is helpful if the constant changing is annoying
+    // setInputRows(valueInteger);
+    // if (event.keyCode !== 13) {
+    //   return;
+    // }
+
     valueInteger = valueInteger > 0 ? valueInteger : 1;
+
     if (valueInteger < cols) {
       const updatedGrid = gridData.map((row) => row.slice(0, valueInteger));
-      setGridata(updatedGrid);
+      setGridData(updatedGrid);
     } else {
       const colsToAdd = valueInteger - cols;
       const updatedGrid = gridData.map((row) => [
         ...row,
         ...new Array(colsToAdd).fill(0),
       ]);
-      setGridata(updatedGrid);
+      setGridData(updatedGrid);
     }
     setCols(valueInteger);
   };
@@ -80,7 +115,7 @@ const GridView = () => {
   const handleCellClick = (rowIdx: number, colIdx: number) => {
     const updatedGrid = gridData.map((row) => [...row]);
     updatedGrid[rowIdx][colIdx] = activeDrawingControl;
-    setGridata(updatedGrid);
+    setGridData(updatedGrid);
   };
 
   const [isDrawing, setIsDrawing] = useState(false);
@@ -129,7 +164,7 @@ const GridView = () => {
         updatedGrid[i][j] = activeDrawingControl;
       }
     }
-    setGridata(updatedGrid);
+    setGridData(updatedGrid);
   };
 
   const [startCreatures, setStartCreatures] = useState(100);
@@ -148,32 +183,62 @@ const GridView = () => {
 
   const handleCreatureSpawn = () => {
     const updatedGrid = gridData.map((row) => [...row]);
-
-    const nRow = gridData.length;
-    const nCol = gridData[0].length;
-
-    for (let i = 0; i <= nRow; i++) {
-      for (let j = 0; j <= nCol; j++) {
-        if (updatedGrid[i][j] != drawingControls.barrier) {
-          const x = Math.random();
-          if (x < 0.24) {
-            updatedGrid[i][j] = drawingControls.creature;
-          }
+    const rows = gridData.length;
+    const cols = gridData[0].length;
+    const prob = 0.25;
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        if (
+          gridData[i][j] === drawingControls.clear ||
+          gridData[i][j] === drawingControls.creature
+        ) {
+          const spawnCreature = Math.random() < prob;
+          updatedGrid[i][j] = spawnCreature
+            ? drawingControls.creature
+            : drawingControls.clear;
         }
       }
     }
-    setGridata(updatedGrid);
+    setGridData(updatedGrid);
   };
 
+  const handleReset = () => {
+    const updatedGrid = gridData.map((row) => [...row]);
+    const rows = gridData.length;
+    const cols = gridData[0].length;
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        updatedGrid[i][j] = drawingControls.clear;
+      }
+    }
+    setGridData(updatedGrid);
+  };
+
+  const { showAlert } = useAlert();
+
+  async function handleSave() {
+    showAlert("Saving board data...", StickerType.Info, 2);
+    // TODO add gameboard id logic
+    const gameboardDTO: GameboardDTO = {
+      id: "1a",
+      size: GameboardSize.MED,
+      data: gridData,
+      encoded_data: [],
+    };
+    const saveUrl = EVO_SIM_BASE_URL + "/gameboard/save";
+    await postData(saveUrl, gameboardDTO)
+      .then((x) => {
+        console.log("response: " + x);
+        showAlert("Saved board data.", StickerType.SuccessAlert, 12);
+      })
+      .catch((error) => {
+        console.log("response: " + error);
+        showAlert("could not save data.", StickerType.ErrorAlert, 7);
+      });
+  }
+
   return (
-    <>
-      {/* TODO refactor this header div into the header component */}
-      <div className="header">
-        <div style={{ display: "flex" }}>
-          <h2>evo sim</h2>
-          <button className="env">{process.env.NODE_ENV}</button>
-        </div>
-      </div>
+    <div>
       <div className="flex-container">
         <div
           className="main-grid"
@@ -217,11 +282,13 @@ const GridView = () => {
               <EditableButton
                 promptText={"rows:"}
                 value={rows}
+                handleKeyDown={handleRowChange}
                 handleTextChange={handleRowChange}
               />
               <EditableButton
                 promptText={"cols:"}
                 value={cols}
+                handleKeyDown={handleColChange}
                 handleTextChange={handleColChange}
               />
             </ul>
@@ -239,21 +306,32 @@ const GridView = () => {
                 value={generations}
                 handleTextChange={handleGenerationsChange}
               />
-            </ul>
-            <ul>
-              <p>
-                <b>runtime</b>
-              </p>
-              <button style={{ display: "flex" }} onClick={() => handleCreatureSpawn()}>
+              <button
+                style={{ display: "flex" }}
+                onClick={() => handleCreatureSpawn()}
+              >
                 spawn creatures randomly
               </button>
-              <button style={{ display: "flex" }}>play!</button>
-              <button style={{ display: "flex" }}>get server data</button>
+            </ul>
+            <ul>
+              <br></br>
+              <button
+                style={{ display: "flex", backgroundColor: ColorMap.GREEN }}
+                onClick={() => handleSave()}
+              >
+                save
+              </button>
+              <button
+                style={{ display: "flex", backgroundColor: ColorMap.PINK }}
+                onClick={() => handleReset()}
+              >
+                reset
+              </button>
             </ul>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

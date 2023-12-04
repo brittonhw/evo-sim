@@ -1,0 +1,15 @@
+.header-sticker {
+  height: 2.2em;
+  white-space: nowrap;
+  width: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  min-width: 120px;
+  font-size: smaller;
+  border-radius: 15px;
+  justify-content: center;
+  text-align: center;
+  padding-left: auto;
+  padding-right: auto;
+  margin-left: 15px;
+}

@@ -36,30 +36,28 @@ const List = (props: Props) => {
   }, []);
 
   return (
-    <>
-      <ul>
-        <p>
-          <b>{props.groupTitle}</b>
-        </p>
-        {props.id.map((id) => (
-          <div>
-            <button
-              ref={buttonRefs[id]}
-              className={id === props.activeDrawingControl ? "selected" : ""}
-              onClick={() => props.handleClick(id)}
-              key={id}
-            >
-              <span>
-                {/* todo add some icons here */}
-                {/* <CircleFill/> */}
-                {/* <img src={'/1-square.svg'} alt="My Image" style={{marginRight:"15px", paddingTop:"auto", paddingBottom:"auto"}}/> */}
-                {drawingControlText.get(id)}
-              </span>
-            </button>
-          </div>
-        ))}
-      </ul>
-    </>
+    <ul>
+      <p>
+        <b>{props.groupTitle}</b>
+      </p>
+      {props.id.map((id) => (
+        <div>
+          <button
+            ref={buttonRefs[id]}
+            className={id === props.activeDrawingControl ? "selected" : ""}
+            onClick={() => props.handleClick(id)}
+            key={id}
+          >
+            <span>
+              {/* todo add some icons here */}
+              {/* <CircleFill/> */}
+              {/* <img src={'/1-square.svg'} alt="My Image" style={{marginRight:"15px", paddingTop:"auto", paddingBottom:"auto"}}/> */}
+              {drawingControlText.get(id)}
+            </span>
+          </button>
+        </div>
+      ))}
+    </ul>
   );
 };
 

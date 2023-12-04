@@ -9,7 +9,7 @@ creating evolution simulator, project inspired by David Randall Miller: https://
 - [Python 3.11](https://www.python.org/downloads/)
 - [NodeJS 18](https://nodejs.org/en/download)
 
-## running locally
+## running locally (MacOS)
 
 #### 1) start the backend server
 1) `cd backend/`

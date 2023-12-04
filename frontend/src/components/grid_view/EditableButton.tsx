@@ -2,7 +2,9 @@
 type Props = {
   promptText: string;
   value: number;
-  handleTextChange: any;
+  handleTextChange?: any;
+  handleKeyDown?: any;
+  handleClick?: any;
 };
 
 const EditableButton = (props: Props) => {
@@ -16,6 +18,7 @@ const EditableButton = (props: Props) => {
           type="number"
           value={props.value}
           onChange={props.handleTextChange}
+          onKeyDown={props.handleKeyDown}
           style={{ marginRight: "0px", width: "40px" }}
         />
       </button>
