@@ -46,7 +46,7 @@ const App = () => {
             />
           ) : null}
           {selectedMenuId == "1c" ? <RunView /> : null}
-          {/* {selectedMenuId == "1d" ? <PlaybackView /> : null} */}
+          {selectedMenuId == "1d" ? <PlaybackView /> : null}
           {selectedMenuId == "1e" ? <AnalyticsView /> : null}
         </div>
       </div>

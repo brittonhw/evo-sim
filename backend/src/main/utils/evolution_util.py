@@ -4,8 +4,8 @@ import random
 
 def move_random_direction(old_position: tuple[int, int], gameboard_size = GameboardSize):
     
-    x_direction = random.sample([-1, 1], 1)
-    y_direction = random.sample([-1, 1], 1)
+    x_direction = random.choice([-1, 1])
+    y_direction = random.choice([-1, 1])
 
     if old_position[0] + x_direction not in range(gameboard_size):
         x_direction = x_direction * -1

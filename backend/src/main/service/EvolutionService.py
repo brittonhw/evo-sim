@@ -28,7 +28,7 @@ class EvolutionService:
 
         for i in range(population_size):
             creature_positions_dto = CreaturePositionsDTO(creature_id=i)
-            last_position: tuple[int, int] = random.randrange(0, gameboard_size // 4), random.randrange(0, gameboard_size // 4)
+            last_position: tuple[int, int] = random.randrange(0, gameboard_size), random.randrange(0, gameboard_size)
             positions = [last_position]
             for _ in range(lifecycle_steps - 1):
                 newest_position = move_random_direction(positions[-1], gameboard_size)
