@@ -2,8 +2,6 @@ from fastapi import APIRouter
 
 from src.main.model.dto.evolution_request import EvolutionRequestDTO
 from src.main.model.dto.evolution_response import EvolutionResponseDTO
-from src.main.model.dto.animation_request import AnimationRequestDTO
-from src.main.model.dto.animation_response import AnimationResponseDTO
 from src.main.service.evolution_service import EvolutionService
 from src.main.utils.logger import logger
 
@@ -28,13 +26,3 @@ async def start_evolution(
 
     ev_response = EvolutionResponseDTO()
     return ev_response
-
-
-@router.get("/animation", name="get an animation", description="gets an animation")
-async def get_animation(animation_request: AnimationRequestDTO) -> AnimationResponseDTO:
-    logger.info("getting animation for lifecycle_id %s", animation_request.lifecycle_id)
-
-    animation_response = AnimationResponseDTO()
-    animation_response.lifecycle_id = animation_request.lifecycle_id
-
-    return animation_response

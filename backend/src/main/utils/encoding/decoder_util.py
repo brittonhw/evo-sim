@@ -1,0 +1,82 @@
+from typing import List
+
+from src.main.model.dto.creature_positions import CreaturePositionsDTO
+from src.main.utils.encoding.encoder_util import BYTES_FOR_CREATURE_ID
+from src.main.service.evolution_service import BYTES_FOR_STEPS
+
+
+def divide_but_integer_result_required(numerator, denominator):
+    result = numerator / denominator
+    is_whole = result == numerator // denominator
+    return result, is_whole
+
+
+def calculate_steps(data_bytes):
+    return int.from_bytes(data_bytes[:BYTES_FOR_STEPS], "big")
+
+
+def calculate_n_creatures(steps: int, data_bytes: bytes) -> int:
+    n, is_whole = divide_but_integer_result_required(
+        (len(data_bytes) - BYTES_FOR_STEPS), (BYTES_FOR_CREATURE_ID + steps * 2)
+    )
+
+    if not is_whole:
+        raise ValueError("couldn't find right creature length!")
+
+    return n
+
+
+def convert_bytes_to_tuple(tuple_bytes: bytes) -> tuple[int, int]:
+    return (
+        int.from_bytes(tuple_bytes[0:1], "big"),
+        int.from_bytes(tuple_bytes[1:], "big"),
+    )
+
+
+def convert_bytes_to_tuple_list(tuple_list_bytes: bytes) -> List[tuple[int, int]]:
+    tuple_list = [
+        convert_bytes_to_tuple(tuple_list_bytes[i : i + 2])
+        for i in range(0, len(tuple_list_bytes), 2)
+    ]
+    return tuple_list
+
+
+def convert_bytes_to_creature_positions(
+    creature_positions_bytes: bytes,
+) -> CreaturePositionsDTO:
+    creature_data = CreaturePositionsDTO()
+    creature_data.id = int.from_bytes(
+        creature_positions_bytes[:BYTES_FOR_CREATURE_ID], "big"
+    )
+    creature_data.positions = convert_bytes_to_tuple_list(
+        creature_positions_bytes[BYTES_FOR_CREATURE_ID:]
+    )
+    return creature_data
+
+
+def convert_bytes_to_creature_positions_list(
+    steps: int, creature_positions_list_bytes: bytes
+) -> List[CreaturePositionsDTO]:
+    creature_positions_bytes_len = BYTES_FOR_CREATURE_ID + steps * 2
+    creature_data_list = []
+    for i in range(0, len(creature_positions_list_bytes), creature_positions_bytes_len):
+        creature_data_list.append(
+            convert_bytes_to_creature_positions(
+                creature_positions_list_bytes[i : i + creature_positions_bytes_len]
+            )
+        )
+    return creature_data_list
+
+
+def convert_bytes_to_animation_dto(data_bytes: bytes) -> AnimationData:
+    animation_data = AnimationData()
+
+    animation_data.steps = calculate_steps(data_bytes)
+
+    animation_data.n_creatures = calculate_n_creatures(animation_data.steps, data_bytes)
+
+    animation_data.creature_data = convert_bytes_to_creature_positions_list(
+        animation_data.steps, data_bytes[BYTES_FOR_STEPS:]
+    )
+
+    return animation_data

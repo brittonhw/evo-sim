@@ -1,9 +1,9 @@
-from typing import List
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 
+
+from src.main.model.dto.animation_data import AnimationData
 from src.main.service.evolution_service import EvolutionService
-from src.main.model.dto.creature_positions import CreaturePositionsDTO
 from src.main.model.enum.enums import GameboardSize
 from src.main.utils.logger import logger
 
@@ -23,8 +23,8 @@ async def population_positions_example(
     population_size: int = 10,
     gameboard_size: GameboardSize = GameboardSize.XL,
     lifecycle_steps: int = 200,
-) -> List[CreaturePositionsDTO]:
-    return evolution_service.get_population_positions_example(
+) -> AnimationData:
+    return evolution_service.get_animation_data_example(
         population_size, gameboard_size, lifecycle_steps
     )
 
@@ -37,10 +37,10 @@ async def population_positions_example(
         digit integer, and each position is 2 integers (0-255)",
 )
 async def get_population_positions_encoded() -> StreamingResponse:
-    creatures_data = evolution_service.get_population_positions_example(
+    animation_data = evolution_service.get_animation_data_example(
         1000, GameboardSize.XL, 300
     )
-    data_bytes = evolution_service.encode_positions_to_bytes(300, creatures_data)
+    data_bytes = evolution_service.encode_positions_to_bytes(animation_data)
     response = StreamingResponse(
         iter([data_bytes]), media_type="application/octet-stream"
     )

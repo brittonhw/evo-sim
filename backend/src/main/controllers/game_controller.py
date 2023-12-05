@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.main.utils.item import Item
+from src.main.model.item import Item
 from src.main.service.gameboard_service import GameboardService
 from src.main.model.dto.gameboard import GameboardDTO
 from src.main.model.enum.enums import GameboardSize
