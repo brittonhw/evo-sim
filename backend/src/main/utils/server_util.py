@@ -1,6 +1,6 @@
 def print_startup_message(server_path: str, host: str, port: str) -> str:
 
-    dashes = "".join(["-" for i in range(60)])
+    dashes = "".join(["-" for _ in range(60)])
 
     if host == "0.0.0.0":
         host = "localhost"

@@ -2,10 +2,9 @@ import random
 from typing import List
 from src.main.utils.evolution_util import move_random_direction
 from src.main.utils.encoder_util import convert_creature_position_list_to_bytes
-from src.main.model.dto.CreaturePositionsDTO import CreaturePositionsDTO
+from src.main.model.dto.creature_positions import CreaturePositionsDTO
 from src.main.model.enum.enums import GameboardSize
-from src.main.game_logic.Gameboard import Gameboard
-from src.main.utils.Logger import logger
+from src.main.utils.logger import logger
 
 BYTES_FOR_STEPS = 2
 

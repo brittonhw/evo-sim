@@ -1,11 +1,12 @@
 from fastapi import APIRouter
 
-from src.main.service.GameboardService import GameboardService
-from src.main.model.dto.GameboardDTO import GameboardDTO
+from src.main.utils.item import Item
+from src.main.service.gameboard_service import GameboardService
+from src.main.model.dto.gameboard import GameboardDTO
 from src.main.model.enum.enums import GameboardSize
-from src.main.utils.Item import Item
-from src.main.utils.Logger import logger
 from src.main.utils.sample_gameboards.sample_gameboard import get_sample_gameboard
+from src.main.utils.logger import logger
+
 
 router = APIRouter(tags=["Gameboard Controller"])
 

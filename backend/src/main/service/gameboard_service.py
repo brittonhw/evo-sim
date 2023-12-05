@@ -1,21 +1,17 @@
 import json
 import os
 
-from src.main.config.Config import config
-from src.main.game_logic.Gameboard import Gameboard
-from src.main.model.dto.GameboardDTO import GameboardDTO
-from src.main.utils.Logger import logger
+from src.main.config.config import config
+from src.main.model.dto.gameboard import GameboardDTO
+from src.main.utils.logger import logger
 
 LOCAL_S3_PATH = os.path.join('.tmp', 's3')
 
 
 class GameboardService:
 
-    def run_gameboard(self, size: int) -> Gameboard:
-        game_board = Gameboard(size)
-        game_board.set_game(1000)
-
-        return game_board
+    def run_gameboard(self, size: int):
+        raise NotImplementedError()
 
     def save_gameboard(self, gameboard_dto: GameboardDTO) -> GameboardDTO:
 

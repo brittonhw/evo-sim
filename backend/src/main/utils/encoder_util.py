@@ -1,7 +1,7 @@
 
 from typing import List
 
-from src.main.model.dto.CreaturePositionsDTO import CreaturePositionsDTO
+from src.main.model.dto.creature_positions import CreaturePositionsDTO
 
 BYTES_FOR_CREATURE_ID = 2
 
