@@ -7,8 +7,6 @@ from src.main.model.dto.creature_positions import CreaturePositionsDTO
 from src.main.model.enum.enums import GameboardSize
 from src.main.utils.logger import logger
 
-BYTES_FOR_STEPS = 2
-
 
 class EvolutionService:
     def start_evolution(self) -> None:
@@ -45,8 +43,6 @@ class EvolutionService:
         animation_data.creature_positions = creature_positions_list
 
     def encode_positions_to_bytes(self, animation_data: AnimationData) -> bytes:
-        if not 0 < animation_data.steps < 2 ** (8 * BYTES_FOR_STEPS):
-            raise ValueError("not enough bytes to represent steps!")
-
+        
         animation_data_bytes = convert_animation_data_to_bytes(animation_data)
         return animation_data_bytes
