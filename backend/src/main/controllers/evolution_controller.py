@@ -21,7 +21,7 @@ async def start_evolution(
     evolution_request: EvolutionRequestDTO,
 ) -> EvolutionResponseDTO:
     logger.info(
-        "starting evolution for gameboard_id %s", evolution_request.gameboard_id
+        "starting evolution for gameboard id %s", evolution_request.gameboard_id
     )
 
     ev_response = EvolutionResponseDTO()
