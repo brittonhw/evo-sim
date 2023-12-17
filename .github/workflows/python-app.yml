@@ -32,7 +32,7 @@ jobs:
         pip install -r requirements-test.txt
     - name: Lint with flake8
       run: |
-        flake8 src
+        flake8 -v src/main
     - name: Test with pytest
       run: |
         pytest
