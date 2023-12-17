@@ -41,3 +41,10 @@ jobs:
       with:
         name: Test Report
         path: ./testing-results/coverage.xml
+
+    - name: Save test results (complete folder)
+      uses: actions/upload-artifact@v3
+      with:
+        name: Test Report Folder!
+        path: ./testing-results
+
