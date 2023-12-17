@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.main.config.config2 import config
+from src.main.config.config import config
 from src.main.controllers.evolution_controller import router as evolution_controller
 from src.main.controllers.game_controller import router as game_controller
 from src.main.controllers.creature_controller import router as creature_controller

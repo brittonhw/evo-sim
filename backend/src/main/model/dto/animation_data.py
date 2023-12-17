@@ -2,7 +2,7 @@ from typing import List
 from pydantic import BaseModel
 
 from src.main.model.dto.creature_positions import CreaturePositionsDTO
-from src.main.config.config2 import config
+from src.main.config.config import config
 
 BYTES_FOR_STEPS = config["backend"]["encoding"]["byteLengths"][
     "lifecycleSteps"

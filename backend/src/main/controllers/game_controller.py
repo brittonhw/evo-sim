@@ -5,7 +5,7 @@ from src.main.service.gameboard_service import GameboardService
 from src.main.model.dto.gameboard import GameboardDTO
 from src.main.model.enum.enums import GameboardSize
 from src.main.utils.sample_gameboards.sample_gameboard import get_sample_gameboard
-from src.main.utils.logger2 import logger
+from src.main.utils.logger import logger
 
 
 router = APIRouter(tags=["Gameboard Controller"])
