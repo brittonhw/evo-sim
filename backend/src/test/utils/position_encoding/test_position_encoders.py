@@ -39,5 +39,4 @@ def test_encode_and_decode():
     result_animation_data = convert_bytes_to_animation_dto(data_bytes)
 
     assert result_animation_data.steps == animation_data.steps
-
-
+    
