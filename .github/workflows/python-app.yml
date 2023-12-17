@@ -36,13 +36,9 @@ jobs:
       run: |
         pytest
 
-    - name: Debug - Print Current Directory
-      run: |
-        cd testing-results
-
     - name: Save test results fodler
       uses: actions/upload-artifact@v3
       with:
         name: test-report-folder
-        path: .
+        path: backend/testing-results
 
