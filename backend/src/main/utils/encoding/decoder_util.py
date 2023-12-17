@@ -1,9 +1,12 @@
 from typing import List
 
+from src.main.model.dto.animation_data import AnimationData
 from src.main.model.dto.creature_positions import CreaturePositionsDTO
-from src.main.utils.encoding.encoder_util import BYTES_FOR_CREATURE_ID
-from src.main.service.evolution_service import BYTES_FOR_STEPS
+from src.main.utils.logger import logger
+from src.main.config.config import config
 
+BYTES_FOR_CREATURE_ID = config['backend']['evolutionEncoding']['byteLengths']['creatureId']
+BYTES_FOR_STEPS = config['backend']['evolutionEncoding']['byteLengths']['lifecycleSteps']
 
 def divide_but_integer_result_required(numerator, denominator):
     result = numerator / denominator
@@ -73,9 +76,10 @@ def convert_bytes_to_animation_dto(data_bytes: bytes) -> AnimationData:
 
     animation_data.steps = calculate_steps(data_bytes)
 
-    animation_data.n_creatures = calculate_n_creatures(animation_data.steps, data_bytes)
+    n_creatures = calculate_n_creatures(animation_data.steps, data_bytes)
+    logger.info("converting an animation of %d creatures from byte data!", n_creatures)
 
-    animation_data.creature_data = convert_bytes_to_creature_positions_list(
+    animation_data.creature_positions = convert_bytes_to_creature_positions_list(
         animation_data.steps, data_bytes[BYTES_FOR_STEPS:]
     )
 

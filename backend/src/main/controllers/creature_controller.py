@@ -36,9 +36,13 @@ async def population_positions_example(
         for all creatures. lifecyle_steps and creature id are 2 bytes \
         digit integer, and each position is 2 integers (0-255)",
 )
-async def get_population_positions_encoded() -> StreamingResponse:
+async def get_population_positions_encoded(population_size: int = 1000,
+                                           gameboard_size: GameboardSize = GameboardSize.XL,
+                                           lifecycle_steps: int = 300
+                                           ) -> StreamingResponse:
+
     animation_data = evolution_service.get_animation_data_example(
-        1000, GameboardSize.XL, 300
+        population_size, gameboard_size, lifecycle_steps
     )
     data_bytes = evolution_service.encode_positions_to_bytes(animation_data)
     response = StreamingResponse(

@@ -13,24 +13,28 @@ router = APIRouter(tags=["Gameboard Controller"])
 gameboard_service = GameboardService()
 
 
-@router.post(
-    "/save",
-    name="save a gameboard",
-    description="saves a gameboard"
-)
-async def save_gameboard(gameboard_dto_new: GameboardDTO,
-                         use_example_data: bool | None = False) -> GameboardDTO:
+@router.post("/save", name="save a gameboard", description="saves a gameboard")
+async def save_gameboard(
+    gameboard_dto_new: GameboardDTO, use_example_data: bool | None = False
+) -> GameboardDTO:
     logger.info("saving a gameboard!")
 
-    gameboard_dto = GameboardDTO(size=gameboard_dto_new.size, data=gameboard_dto_new.data)
+    gameboard_dto = GameboardDTO(
+        size=gameboard_dto_new.size, data=gameboard_dto_new.data
+    )
 
     if use_example_data:
         gameboard_dto.data = get_sample_gameboard()
 
     gameboard_service.save_gameboard(gameboard_dto)
 
-    logger.info("gameboard dimensions: " + str(len(gameboard_dto.data)) + \
-                 " rows, " + str(len(gameboard_dto.data[0])) + " cols")
+    logger.info(
+        "gameboard dimensions: "
+        + str(len(gameboard_dto.data))
+        + " rows, "
+        + str(len(gameboard_dto.data[0]))
+        + " cols"
+    )
 
     gameboard_dto.data = None
     return gameboard_dto
@@ -44,9 +48,7 @@ async def save_gameboard(gameboard_dto_new: GameboardDTO,
 async def get_a_gameboard() -> GameboardDTO:
     size: GameboardSize = GameboardSize.MED
     example_gameboard_data = get_sample_gameboard()
-    gameboard_dto = GameboardDTO(
-        size=size,
-        data=example_gameboard_data)
+    gameboard_dto = GameboardDTO(size=size, data=example_gameboard_data)
 
     return gameboard_dto
 

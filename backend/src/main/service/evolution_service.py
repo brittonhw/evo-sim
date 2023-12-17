@@ -38,11 +38,11 @@ class EvolutionService:
             creature_positions_dto.position_data = positions
             creature_positions_list.append(creature_positions_dto)
 
-        animation_data = AnimationData()
-        animation_data.steps = lifecycle_steps
-        animation_data.creature_positions = creature_positions_list
+        animation_data = AnimationData(
+            steps=lifecycle_steps, creature_positions=creature_positions_list
+        )
+        return animation_data
 
     def encode_positions_to_bytes(self, animation_data: AnimationData) -> bytes:
-        
         animation_data_bytes = convert_animation_data_to_bytes(animation_data)
         return animation_data_bytes

@@ -5,8 +5,10 @@ from src.main.model.dto.animation_data import AnimationData
 
 from src.main.model.dto.creature_positions import CreaturePositionsDTO
 
-BYTES_FOR_CREATURE_ID = 2
-BYTES_FOR_STEPS = 2
+from src.main.config.config import config
+
+BYTES_FOR_CREATURE_ID = config['backend']['evolutionEncoding']['byteLengths']['creatureId']
+BYTES_FOR_STEPS = config['backend']['evolutionEncoding']['byteLengths']['lifecycleSteps']
 
 
 # each int must be (0-255). TODO add error handling? or overkill?
