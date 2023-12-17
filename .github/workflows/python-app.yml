@@ -38,4 +38,5 @@ jobs:
         flake8 src
     - name: Test with pytest
       run: |
+        echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
         pytest src/test/
