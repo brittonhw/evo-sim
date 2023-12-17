@@ -36,9 +36,14 @@ jobs:
       run: |
         pytest
 
+    - name: Pytest coverage comment
+      uses: MishaKav/pytest-coverage-comment@main
+      with:
+        pytest-coverage-path: ./testing-results/pytest-coverage.txt
+        junitxml-path: ./testing-results/pytest.xml
+
     - name: Save test results fodler
       uses: actions/upload-artifact@v3
       with:
         name: test-report-folder
         path: backend/testing-results
-
