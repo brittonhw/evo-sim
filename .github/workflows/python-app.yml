@@ -5,8 +5,6 @@ name: Run Python Test Cases
 on:
   pull_request:
     branches: [ "main" ]
-  push:
-    branches: [ "main" ]
 
 permissions:
   contents: read
@@ -25,6 +23,10 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.11"
+    - name: Set PYTHONPATH
+      env:
+        PYTHONPATH: .
+      run: echo "PYTHONPATH=$PYTHONPATH"
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
