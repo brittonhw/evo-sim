@@ -22,3 +22,27 @@
 .navbar-item:hover {
   background-color: rgb(237, 237, 237);
 }
+
+.group-title {
+  font-weight: bold;
+  color: grey;
+  font-size: 14px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  display: flex;
+  margin-right: 10px;
+}
+
+
+.group-title.add-simulation {
+  border-radius: 5px;
+  margin-left: 5px;
+  padding: 5px;
+  margin-right: 20px;
+}
+
+.group-title.add-simulation:hover {
+  cursor: pointer;
+  background-color: #e1e1e1;
+}

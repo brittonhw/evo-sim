@@ -17,7 +17,6 @@ gameboard_service = GameboardService()
 async def save_gameboard(
     gameboard_dto_new: GameboardDTO, use_example_data: bool | None = False
 ) -> GameboardDTO:
-    logger.info("saving a gameboard!")
 
     gameboard_dto = GameboardDTO(
         size=gameboard_dto_new.size, data=gameboard_dto_new.data
@@ -27,14 +26,6 @@ async def save_gameboard(
         gameboard_dto.data = get_sample_gameboard()
 
     gameboard_service.save_gameboard(gameboard_dto)
-
-    logger.info(
-        "gameboard dimensions: "
-        + str(len(gameboard_dto.data))
-        + " rows, "
-        + str(len(gameboard_dto.data[0]))
-        + " cols"
-    )
 
     gameboard_dto.data = None
     return gameboard_dto
@@ -59,6 +50,8 @@ async def get_a_gameboard() -> GameboardDTO:
     description="Returns the number // 2",
 )
 async def ping_number2(number: int) -> Item:
+
+    logger.info("heres my response!!")
     item = Item()
 
     return item

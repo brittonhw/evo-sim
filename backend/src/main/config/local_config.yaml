@@ -13,10 +13,13 @@ backend:
       algorithm: HS256
       secret-key: notASecret
 
-  evolutionEncoding:
+  encoding:
     byteLengths:
       creatureId: 2
       lifecycleSteps: 2
+      gameboardSize: 2
+    bitLengths:
+      gameboard_integer: 3
 
   s3:
     port: 9000

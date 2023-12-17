@@ -5,8 +5,8 @@ from src.main.model.dto.creature_positions import CreaturePositionsDTO
 from src.main.utils.logger import logger
 from src.main.config.config import config
 
-BYTES_FOR_CREATURE_ID = config['backend']['evolutionEncoding']['byteLengths']['creatureId']
-BYTES_FOR_STEPS = config['backend']['evolutionEncoding']['byteLengths']['lifecycleSteps']
+BYTES_FOR_CREATURE_ID = config['backend']['encoding']['byteLengths']['creatureId']
+BYTES_FOR_STEPS = config['backend']['encoding']['byteLengths']['lifecycleSteps']
 
 def divide_but_integer_result_required(numerator, denominator):
     result = numerator / denominator
@@ -48,10 +48,10 @@ def convert_bytes_to_creature_positions(
     creature_positions_bytes: bytes,
 ) -> CreaturePositionsDTO:
     creature_data = CreaturePositionsDTO()
-    creature_data.id = int.from_bytes(
+    creature_data.creature_id = int.from_bytes(
         creature_positions_bytes[:BYTES_FOR_CREATURE_ID], "big"
     )
-    creature_data.positions = convert_bytes_to_tuple_list(
+    creature_data.position_data = convert_bytes_to_tuple_list(
         creature_positions_bytes[BYTES_FOR_CREATURE_ID:]
     )
     return creature_data
@@ -61,7 +61,7 @@ def convert_bytes_to_creature_positions_list(
     steps: int, creature_positions_list_bytes: bytes
 ) -> List[CreaturePositionsDTO]:
     creature_positions_bytes_len = BYTES_FOR_CREATURE_ID + steps * 2
-    creature_data_list = []
+    creature_data_list: List[CreaturePositionsDTO] = []
     for i in range(0, len(creature_positions_list_bytes), creature_positions_bytes_len):
         creature_data_list.append(
             convert_bytes_to_creature_positions(
@@ -72,15 +72,14 @@ def convert_bytes_to_creature_positions_list(
 
 
 def convert_bytes_to_animation_dto(data_bytes: bytes) -> AnimationData:
-    animation_data = AnimationData()
 
-    animation_data.steps = calculate_steps(data_bytes)
+    steps = calculate_steps(data_bytes)
 
-    n_creatures = calculate_n_creatures(animation_data.steps, data_bytes)
+    n_creatures = calculate_n_creatures(steps, data_bytes)
     logger.info("converting an animation of %d creatures from byte data!", n_creatures)
 
-    animation_data.creature_positions = convert_bytes_to_creature_positions_list(
-        animation_data.steps, data_bytes[BYTES_FOR_STEPS:]
+    creature_positions = convert_bytes_to_creature_positions_list(
+        steps, data_bytes[BYTES_FOR_STEPS:]
     )
 
-    return animation_data
+    return AnimationData(steps=steps, creature_positions=creature_positions)

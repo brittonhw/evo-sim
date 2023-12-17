@@ -2,7 +2,7 @@ import random
 
 from src.main.model.dto.animation_data import AnimationData
 from src.main.utils.evolution_util import move_random_direction
-from src.main.utils.encoding.encoder_util import convert_animation_data_to_bytes
+from src.main.utils.position_encoding.encoder import convert_animation_data_to_bytes
 from src.main.model.dto.creature_positions import CreaturePositionsDTO
 from src.main.model.enum.enums import GameboardSize
 from src.main.utils.logger import logger

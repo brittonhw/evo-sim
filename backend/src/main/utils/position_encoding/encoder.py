@@ -1,17 +1,17 @@
 from typing import List
-
-
 from src.main.model.dto.animation_data import AnimationData
 
 from src.main.model.dto.creature_positions import CreaturePositionsDTO
-
 from src.main.config.config import config
 
-BYTES_FOR_CREATURE_ID = config['backend']['evolutionEncoding']['byteLengths']['creatureId']
-BYTES_FOR_STEPS = config['backend']['evolutionEncoding']['byteLengths']['lifecycleSteps']
+BYTES_FOR_CREATURE_ID = config["backend"]["encoding"]["byteLengths"][
+    "creatureId"
+]
+BYTES_FOR_STEPS = config["backend"]["encoding"]["byteLengths"][
+    "lifecycleSteps"
+]
 
 
-# each int must be (0-255). TODO add error handling? or overkill?
 def convert_tuple_to_bytes(t: tuple[int, int]) -> bytes:
     return bytes(t[0].to_bytes(1, "big")) + bytes(t[1].to_bytes(1, "big"))
 
@@ -28,7 +28,6 @@ def convert_creature_positions_to_bytes(
     positions_bytes = convert_tuple_list_to_bytes(creature_positions.position_data)
 
     return id_bytes + positions_bytes
-
 
 def convert_animation_data_to_bytes(animation_data: AnimationData) -> bytes:
     if not 0 < animation_data.steps < 2 ** (8 * BYTES_FOR_STEPS):

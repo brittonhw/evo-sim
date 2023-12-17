@@ -25,23 +25,3 @@ def print_startup_message(server_path: str, host: str, port: str, env: str) -> s
     )
 
     print(msg)
-
-
-def start_local_s3(port: str, data_folder: str):
-    import os
-    import subprocess
-
-    # Start MinIO server with dummy access and secret keys
-    minio_command = [
-        "minio",
-        "server",
-        data_folder,
-        "--address",
-        "localhost:" + port,
-        "--access-key",
-        "your-dummy-access-key",  # Use a placeholder/dummy value
-        "--secret-key",
-        "your-dummy-secret-key",  # Use a placeholder/dummy value
-    ]
-
-    subprocess.Popen(minio_command)

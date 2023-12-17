@@ -29,10 +29,8 @@ app_server = FastAPI()
 server_path = "/evo-sim"
 app_server.mount(server_path, app)
 
+server_util.print_startup_message(server_path, host, port, env)
+
 if __name__ == "__main__":
-
-
-    server_util.print_startup_message(server_path, host, port, env)
-    # server_util.start_local_s3("9300", "s3")
 
     uvicorn.run(app_server, host=host, port=port)
