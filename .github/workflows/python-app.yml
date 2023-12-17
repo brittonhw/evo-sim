@@ -35,3 +35,8 @@ jobs:
         run: |
           cd backend
           pytest
+      - name: Archive Folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Report
+          path: testing-results
