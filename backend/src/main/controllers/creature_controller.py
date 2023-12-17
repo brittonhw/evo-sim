@@ -5,7 +5,7 @@ from fastapi.responses import StreamingResponse
 from src.main.model.dto.animation_data import AnimationData
 from src.main.service.evolution_service import EvolutionService
 from src.main.model.enum.enums import GameboardSize
-from src.main.utils.logger import logger
+from src.main.utils.logger2 import logger
 
 router = APIRouter(tags=["Creature Controller"])
 

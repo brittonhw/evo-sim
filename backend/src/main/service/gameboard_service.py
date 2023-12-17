@@ -4,9 +4,9 @@ import os
 
 from src.main.utils.gameboard_encoding.encoder import convert_gameboard_to_bytes
 
-from src.main.config.config import config
+from src.main.config.config2 import config
 from src.main.model.dto.gameboard import GameboardDTO
-from src.main.utils.logger import logger
+from src.main.utils.logger2 import logger
 
 LOCAL_S3_PATH = os.path.join(".tmp", "s3")
 

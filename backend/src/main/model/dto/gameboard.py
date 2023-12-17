@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 
 from src.main.model.enum.enums import GameboardSize
 from src.main.utils.sample_gameboards.sample_gameboard import get_sample_gameboard
-from src.main.config.config import config
+from src.main.config.config2 import config
 
 
 example_gameboard_data = get_sample_gameboard()
