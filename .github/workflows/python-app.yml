@@ -35,8 +35,8 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
-      - name: Archive Folder
+      - name: Save test results
         uses: actions/upload-artifact@v3
         with:
           name: Test Report
-          path: testing-results
+          path: testing-results/
