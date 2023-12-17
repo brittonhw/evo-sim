@@ -40,4 +40,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Test Report
-        path: testing-results/coverage.xml
+        path: ./testing-results/coverage.xml
