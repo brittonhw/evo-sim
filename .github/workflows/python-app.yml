@@ -38,6 +38,7 @@ jobs:
 
     - name: Debug - Print Current Directory
       run: |
+        cd testing-results
         pwd
         ls -la
 
@@ -51,5 +52,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Test Report Folder!
-        path: .testing-results
+        path: testing-results/coverage.xml
 
