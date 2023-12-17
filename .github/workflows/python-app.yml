@@ -22,6 +22,7 @@ jobs:
         run: |
           pwd
           ls -la
+          cd backend
           echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
       - name: Install dependencies
         run: |
@@ -36,5 +37,4 @@ jobs:
       - name: Test with pytest
         run: |
           cd backend
-          echo "PYTHONPATH=/home/runner/work/evo-sim/evo-sim/backend" >> $GITHUB_ENV
           pytest
