@@ -36,5 +36,5 @@ jobs:
       - name: Test with pytest
         run: |
           cd backend
-          echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
+          echo "PYTHONPATH=/home/runner/work/evo-sim/evo-sim/backend" >> $GITHUB_ENV
           pytest
