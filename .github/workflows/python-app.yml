@@ -20,8 +20,8 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.11"
-    - name: Change to /src directory
-      run: cd src
+    - name: Change to python directory
+      run: cd backend
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
