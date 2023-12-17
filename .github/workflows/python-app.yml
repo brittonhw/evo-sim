@@ -5,14 +5,19 @@ name: Run Python Test Cases
 on:
   pull_request:
     branches: [ "main" ]
+  push:
+    branches: [ "main" ]
 
 permissions:
   contents: read
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./src
 
     steps:
     - uses: actions/checkout@v3
