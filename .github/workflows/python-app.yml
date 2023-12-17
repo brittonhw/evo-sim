@@ -39,8 +39,8 @@ jobs:
     - name: Pytest coverage comment
       uses: MishaKav/pytest-coverage-comment@main
       with:
-        pytest-xml-coverage-path: ./testing-results/coverage.xml
-        junitxml-path: ./testing-results/pytest.xml
+        pytest-xml-coverage-path: backend/testing-results/coverage.xml
+        junitxml-path: backend/testing-results/pytest.xml
 
     - name: Save test results fodler
       uses: actions/upload-artifact@v3
