@@ -11,7 +11,7 @@ backend:
 
     tokenGeneration:
       algorithm: HS256
-      secret-key: notASecret
+      secret-key: NotReallyASecretSinceItsLocal
 
   encoding:
     byteLengths:
