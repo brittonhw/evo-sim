@@ -29,9 +29,6 @@ jobs:
         ls -la
         export PYTHONPATH=$PWD
         echo "PYTHONPATH=$PYTHONPATH"
-    - name: Set PYTHONPATH
-      run: |
-        export PYTHONPATH=$PYTHONPATH:.
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
