@@ -16,14 +16,11 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
-      - name: Debug - Print Current Directory
+      - name: Set Python directory and print python version
         run: |
-          pwd
-          ls -la
           cd backend
           echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
+          python -c "import sys; print(sys.version)"
       - name: Install dependencies
         run: |
           cd backend
