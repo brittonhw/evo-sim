@@ -10,9 +10,4 @@ class EvolutionResponseDTO(BaseModel):
     evolution_status: EvolutionStatus
     lifecycles: int
     lifecycles_completed: int
-    lifecycles_saved: List[str] # list of lifecycle_ids ready for animating
-
-
-
-
-
+    lifecycles_saved: List[str]  # list of lifecycle_ids ready for animating

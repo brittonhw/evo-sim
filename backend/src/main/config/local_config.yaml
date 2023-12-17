@@ -1,5 +1,5 @@
 backend:
-  name: Evolution Sim
+  appName: Evo Sim Service
   env: local
 
   server:
@@ -8,6 +8,18 @@ backend:
     allowedOrigins:
       - "http://localhost:5300"
       - "http://localhost"
+
+    tokenGeneration:
+      algorithm: HS256
+      secret-key: notASecret
+
+  encoding:
+    byteLengths:
+      creatureId: 2
+      lifecycleSteps: 2
+      gameboardSize: 2
+    bitLengths:
+      gameboard_integer: 3
 
   s3:
     port: 9000

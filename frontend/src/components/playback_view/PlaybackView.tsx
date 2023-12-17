@@ -112,7 +112,7 @@ const PlaybackView = () => {
   return (
     <>
       <div className="playback-view">
-        <p>Review your simulations here.</p>
+        <p>Review your simulations here. How did your creatures navigate your board?</p>
       </div>
       <div style={{ display: "flex" }}>
         <canvas ref={canvasRef} width={800} height={800} />

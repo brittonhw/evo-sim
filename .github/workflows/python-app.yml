@@ -1,20 +1,18 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+name: Python application
 
-name: Run Python Test Cases
 on:
   pull_request:
-    branches: [ "main" ]
-  push:
     branches: [ "main" ]
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
-  test:
+  build:
+
     runs-on: ubuntu-latest
-    
+
     defaults:
       run:
         working-directory: ./backend
@@ -25,8 +23,10 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.11"
-    - name: Install dependencies
+    - name: Install python dependencies
       run: |
+        echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
+        python -c "import sys; print(sys.version)"
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-test.txt
@@ -36,3 +36,15 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+
+    - name: Pytest coverage comment
+      uses: MishaKav/pytest-coverage-comment@main
+      with:
+        pytest-xml-coverage-path: backend/testing-results/coverage.xml
+        junitxml-path: backend/testing-results/pytest.xml
+
+    - name: Save test results fodler
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-report-folder
+        path: backend/testing-results

@@ -1,4 +1,4 @@
-from src.main.game_logic.ActionNode import ActionNode
+from src.main.game_logic.action_node import ActionNode
 
 
 class Brain:

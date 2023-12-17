@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NavBarGroup from "./NavBarGroup";
 import "./navbar.css";
+import AddNewSimulation from "./AddNewSimulation";
 
 interface Props {
   selectedMenuId: string;
@@ -41,6 +42,8 @@ const Navbar = (props: Props) => {
           </h5>
         </div>
 
+        {/* iterate through the groups of gameboards here */}
+
         <NavBarGroup
           menuItems={menuItems}
           displayMenuButtons={mouseInNavBar}
@@ -48,12 +51,8 @@ const Navbar = (props: Props) => {
           selectedMenuId={props.selectedMenuId}
           updateSelectedMenuId={props.setSelectedMenuId}
         />
-        <NavBarGroup
-          menuItems={menuItems}
-          displayMenuButtons={mouseInNavBar}
-          title="group 2"
-          updateSelectedMenuId={props.setSelectedMenuId}
-        />
+        <AddNewSimulation
+        title="add new simulation"/>
       </div>
     </div>
   );
