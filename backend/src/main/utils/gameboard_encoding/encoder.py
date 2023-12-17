@@ -5,6 +5,7 @@ BITS_FOR_INT_SIZE = BYTES_FOR_GAMEBOARD_SIZE = config["backend"]["encoding"]["bi
     "gameboard_integer"
 ]
 
+
 def convert_8_ints_to_bytes(int_list_8: List[int]) -> bytes:
 
     binary_string = ''.join(format(i, '03b') for i in int_list_8)
@@ -17,8 +18,10 @@ def convert_gameboard_row_to_bytes(int_list: List[int]) -> bytes:
         raise ValueError("the size of list of ints should be a multiple of 8.")
 
     chunk_size = 8
-    byte_chunks = [convert_8_ints_to_bytes(int_list[i:i+8]) for i in range(0, len(int_list), chunk_size)]
+    byte_chunks = [convert_8_ints_to_bytes(int_list[i:i+8])
+                   for i in range(0, len(int_list), chunk_size)]
     return b"".join(byte_chunks)
+
 
 def convert_gameboard_to_bytes(gameboard_dto: GameboardDTO) -> bytes:
     if not 0 < gameboard_dto.size < 2 ** (8 * BYTES_FOR_GAMEBOARD_SIZE):

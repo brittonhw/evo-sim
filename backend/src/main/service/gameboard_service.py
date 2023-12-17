@@ -52,8 +52,5 @@ class GameboardService:
             with open(object_name, "wb") as f:
 
                 f.write(convert_gameboard_to_bytes(gameboard_dto))
-                
 
             logger.info("saved gameboard at path %s", object_name)
-
-            

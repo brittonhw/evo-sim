@@ -7,6 +7,8 @@ from src.main.config.config import config
 BYTES_FOR_STEPS = config["backend"]["encoding"]["byteLengths"][
     "lifecycleSteps"
 ]
+
+
 class AnimationData(BaseModel):
     steps: int
     creature_positions: List[CreaturePositionsDTO]

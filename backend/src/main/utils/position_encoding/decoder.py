@@ -8,6 +8,7 @@ from src.main.config.config import config
 BYTES_FOR_CREATURE_ID = config['backend']['encoding']['byteLengths']['creatureId']
 BYTES_FOR_STEPS = config['backend']['encoding']['byteLengths']['lifecycleSteps']
 
+
 def divide_but_integer_result_required(numerator, denominator):
     result = numerator / denominator
     is_whole = result == numerator // denominator
@@ -36,9 +37,11 @@ def convert_bytes_to_tuple(tuple_bytes: bytes) -> tuple[int, int]:
     )
 
 
-def convert_bytes_to_tuple_list(tuple_list_bytes: bytes) -> List[tuple[int, int]]:
+def convert_bytes_to_tuple_list(
+        tuple_list_bytes: bytes
+        ) -> List[tuple[int, int]]:
     tuple_list = [
-        convert_bytes_to_tuple(tuple_list_bytes[i : i + 2])
+        convert_bytes_to_tuple(tuple_list_bytes[i: i + 2])
         for i in range(0, len(tuple_list_bytes), 2)
     ]
     return tuple_list
@@ -65,7 +68,8 @@ def convert_bytes_to_creature_positions_list(
     for i in range(0, len(creature_positions_list_bytes), creature_positions_bytes_len):
         creature_data_list.append(
             convert_bytes_to_creature_positions(
-                creature_positions_list_bytes[i : i + creature_positions_bytes_len]
+                creature_positions_list_bytes[i: i +
+                                              creature_positions_bytes_len]
             )
         )
     return creature_data_list
@@ -76,7 +80,8 @@ def convert_bytes_to_animation_dto(data_bytes: bytes) -> AnimationData:
     steps = calculate_steps(data_bytes)
 
     n_creatures = calculate_n_creatures(steps, data_bytes)
-    logger.info("converting an animation of %d creatures from byte data!", n_creatures)
+    logger.info(
+        "converting an animation of %d creatures from byte data!", n_creatures)
 
     creature_positions = convert_bytes_to_creature_positions_list(
         steps, data_bytes[BYTES_FOR_STEPS:]

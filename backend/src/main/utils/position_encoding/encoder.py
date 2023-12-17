@@ -24,10 +24,13 @@ def convert_tuple_list_to_bytes(tuple_list: List[tuple[int, int]]) -> bytes:
 def convert_creature_positions_to_bytes(
     creature_positions: CreaturePositionsDTO,
 ) -> bytes:
-    id_bytes = creature_positions.creature_id.to_bytes(BYTES_FOR_CREATURE_ID, "big")
-    positions_bytes = convert_tuple_list_to_bytes(creature_positions.position_data)
+    id_bytes = creature_positions.creature_id.to_bytes(
+        BYTES_FOR_CREATURE_ID, "big")
+    positions_bytes = convert_tuple_list_to_bytes(
+        creature_positions.position_data)
 
     return id_bytes + positions_bytes
+
 
 def convert_animation_data_to_bytes(animation_data: AnimationData) -> bytes:
     if not 0 < animation_data.steps < 2 ** (8 * BYTES_FOR_STEPS):

@@ -1,12 +1,13 @@
 import random
 
 
-from src.main.utils.position_encoding.decoder import convert_bytes_to_animation_dto
+from src.main.utils.position_encoding.decoder \
+    import convert_bytes_to_animation_dto
 from src.main.model.dto.animation_data import AnimationData
 from src.main.utils.evolution_util import move_random_direction
 from src.main.model.dto.creature_positions import CreaturePositionsDTO
-from src.main.utils.position_encoding.encoder import convert_animation_data_to_bytes
-
+from src.main.utils.position_encoding.encoder \
+    import convert_animation_data_to_bytes
 
 
 def test_encode_and_decode():
@@ -23,7 +24,8 @@ def test_encode_and_decode():
         ), random.randrange(0, gameboard_size)
         positions = [last_position]
         for _ in range(lifecycle_steps - 1):
-            newest_position = move_random_direction(positions[-1], gameboard_size)
+            newest_position = move_random_direction(
+                positions[-1], gameboard_size)
             positions.append(newest_position)
         creature_positions_dto.position_data = positions
         creature_positions_list.append(creature_positions_dto)

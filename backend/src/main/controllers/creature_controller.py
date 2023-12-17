@@ -16,8 +16,9 @@ evolution_service = EvolutionService()
     "/population-positions/example",
     name="gets example positions of a whole population",
     description="set the population size and gameboard size, and return \
-      example position data for the entire population. by default, the \
-        creatures will start on the left half of the screen and gradually make their way to the right.",
+    example position data for the entire population. by default, the \
+    creatures will start on the left half of the screen and \
+    gradually make their way to the right.",
 )
 async def population_positions_example(
     population_size: int = 10,
@@ -36,11 +37,11 @@ async def population_positions_example(
         for all creatures. lifecyle_steps and creature id are 2 bytes \
         digit integer, and each position is 2 integers (0-255)",
 )
-async def get_population_positions_encoded(population_size: int = 1000,
-                                           gameboard_size: GameboardSize = GameboardSize.XL,
-                                           lifecycle_steps: int = 300
-                                           ) -> StreamingResponse:
-
+async def get_population_positions_encoded(
+    population_size: int = 1000,
+    gameboard_size: GameboardSize = GameboardSize.XL,
+    lifecycle_steps: int = 300,
+) -> StreamingResponse:
     animation_data = evolution_service.get_animation_data_example(
         population_size, gameboard_size, lifecycle_steps
     )
