@@ -23,6 +23,11 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.11"
+    - name: Debug - Print Current Directory
+      run: |
+        pwd
+        ls -la
+        echo "PYTHONPATH=$PYTHONPATH"
     - name: Set PYTHONPATH
       run: |
         export PYTHONPATH=$PYTHONPATH:.
