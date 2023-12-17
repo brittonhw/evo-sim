@@ -7,7 +7,7 @@ creating evolution simulator, project inspired by David Randall Miller: https://
 ## requirements
 
 - [Python 3.11](https://www.python.org/downloads/)
-- [NodeJS 18](https://nodejs.org/en/download)
+- [NodeJS 20](https://nodejs.org/en/download)
 
 ## running locally (MacOS)
 
