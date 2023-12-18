@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from src.main.model.dto.creature_positions import CreaturePositionsDTO
 from src.main.config.config import config
 
-BYTES_FOR_STEPS = config["backend"]["encoding"]["byteLengths"][
+BYTES_FOR_STEPS = config["encoding"]["byteLengths"][
     "lifecycleSteps"
 ]
 

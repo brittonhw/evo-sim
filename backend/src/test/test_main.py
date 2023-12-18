@@ -5,7 +5,6 @@ client = TestClient(app_server)
 
 
 def test_startup_message():
-    response = client.get("/evo-sim/gameboard/ping/72")
+    response = client.get("/evo-sim/ping")
     assert response.status_code == 200
     print(response.json())
-    # assert response.json() == {"message": "Your startup message"}

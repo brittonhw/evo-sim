@@ -1,7 +1,7 @@
 from typing import List
 from src.main.model.dto.gameboard import GameboardDTO
 from src.main.config.config import config
-BITS_FOR_INT_SIZE = BYTES_FOR_GAMEBOARD_SIZE = config["backend"]["encoding"]["bitLengths"][
+BITS_FOR_INT_SIZE = BYTES_FOR_GAMEBOARD_SIZE = config["encoding"]["bitLengths"][
     "gameboard_integer"
 ]
 

@@ -10,7 +10,7 @@ from src.main.config.config import config
 example_gameboard_data = get_sample_gameboard()
 
 
-BYTES_FOR_GAMEBOARD_SIZE = config["backend"]["encoding"]["byteLengths"][
+BYTES_FOR_GAMEBOARD_SIZE = config["encoding"]["byteLengths"][
     "gameboardSize"
 ]
 

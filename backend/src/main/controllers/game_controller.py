@@ -25,7 +25,7 @@ async def save_gameboard(
     if use_example_data:
         gameboard_dto.data = get_sample_gameboard()
 
-    gameboard_service.save_gameboard(gameboard_dto)
+    gameboard_service.encode_and_save_gameboard(gameboard_dto)
 
     gameboard_dto.data = None
     return gameboard_dto
@@ -42,16 +42,3 @@ async def get_a_gameboard() -> GameboardDTO:
     gameboard_dto = GameboardDTO(size=size, data=example_gameboard_data)
 
     return gameboard_dto
-
-
-@router.get(
-    "/ping/{number}",
-    name="ping a number",
-    description="Returns the number // 2",
-)
-async def ping_number2(number: int) -> Item:
-
-    logger.info("heres my response!!")
-    item = Item()
-
-    return item

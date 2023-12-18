@@ -1,5 +1,4 @@
 import random
-import pytest
 
 
 from src.main.utils.position_encoding.decoder \

@@ -16,7 +16,7 @@ class GameboardService:
         raise NotImplementedError()
 
     def save_gameboard(self, gameboard_dto: GameboardDTO) -> GameboardDTO:
-        if config["backend"]["env"] == "local":
+        if config["env"] == "local":
 
             if not os.path.exists(LOCAL_S3_PATH):
                 os.makedirs(LOCAL_S3_PATH)
@@ -39,7 +39,7 @@ class GameboardService:
             logger.info("saved gameboard at path %s", object_name)
 
     def encode_and_save_gameboard(self, gameboard_dto: GameboardDTO):
-        if config["backend"]["env"] == "local":
+        if config["env"] == "local":
 
             if not os.path.exists(LOCAL_S3_PATH):
                 os.makedirs(LOCAL_S3_PATH)
@@ -49,8 +49,13 @@ class GameboardService:
 
             object_name = os.path.join(LOCAL_S3_PATH, gameboard_dto.id)
 
-            with open(object_name, "wb") as f:
+            with open(object_name, "w") as f:
 
-                f.write(convert_gameboard_to_bytes(gameboard_dto))
+                gameboard_bytes = convert_gameboard_to_bytes(gameboard_dto)
+                gameboard_str = gameboard_bytes.hex()
+                logger.info("saved gameboard as a string with length %d",
+                            len(gameboard_str))
+                
+                f.write(gameboard_str)
 
-            logger.info("saved gameboard at path %s", object_name)
+                
