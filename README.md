@@ -7,7 +7,7 @@ creating evolution simulator, project inspired by David Randall Miller: https://
 ## requirements
 
 - [Python 3.11](https://www.python.org/downloads/)
-- [NodeJS 18](https://nodejs.org/en/download)
+- [NodeJS 20](https://nodejs.org/en/download)
 
 ## running locally (MacOS)
 
@@ -21,7 +21,7 @@ creating evolution simulator, project inspired by David Randall Miller: https://
     - `pip install -r requirements.txt`
 4) start the application
     - `python src/main/main.py`
-    - explore API's at http://localhost:8300/docs
+    - explore API's at http://localhost:8300/evo-sim/docs
 
 #### 2) start the frontend ui (in a new terminal)
 - `cd frontend/`
