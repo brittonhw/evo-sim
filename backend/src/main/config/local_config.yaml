@@ -23,7 +23,7 @@ encoding:
     gameboard_integer: 3
 
 dynamoDB:
-  enabled: true
+  enabled: false
   port: 8000
   path_to_dynamo_lib: /Users/elliotbritton/developer/dynamodb_local_latest/DynamoDBLocal_lib
   path_to_dynamo_jar: /Users/elliotbritton/developer/dynamodb_local_latest/DynamoDBLocal.jar
