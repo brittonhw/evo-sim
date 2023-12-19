@@ -43,7 +43,7 @@ jobs:
         pytest-xml-coverage-path: backend/testing-results/coverage.xml
         junitxml-path: backend/testing-results/pytest.xml
 
-    - name: Save test results fodler
+    - name: Save test results folder
       uses: actions/upload-artifact@v3
       with:
         name: test-report-folder
