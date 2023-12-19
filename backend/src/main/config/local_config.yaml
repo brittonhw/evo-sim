@@ -23,7 +23,7 @@ encoding:
     gameboard_integer: 3
 
 dynamoDB:
-  enabled: false
+  enabled: true
   port: 8000
   table_name: Gameboards
   ## update these paths

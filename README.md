@@ -12,10 +12,9 @@ The ronny bros' **evolution simulator**  inspired by David Randall Miller: https
 ## running locally (MacOS)
 
 #### 1) set your DynamoDB path
-1) set dyamoDB.enabled to true in your `local_config.yaml`
-2) you'll need to find your paths to `dynamodb_local_latest/DynamoDBLocal_lib` and `dynamodb_local_latest/DynamoDBLocal.jar` and update them in `local_config.yaml`
-3) make sure java is available by running `java -version`
-4) that's it! python will start and stop dynamoDB automatically.
+1) you'll need to find your paths to `dynamodb_local_latest/DynamoDBLocal_lib` and `dynamodb_local_latest/DynamoDBLocal.jar` and update them in `local_config.yaml`
+2) make sure java is available by running `java -version`
+3) that's it! python will start and stop dynamoDB automatically.
 
 #### 2) start the backend server
 1) `cd backend/`

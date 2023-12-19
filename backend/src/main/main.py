@@ -39,11 +39,12 @@ localDynamoManager = LocalDynamoManager()
 
 if __name__ == "__main__":
 
-    if config['dynamoDB']['enabled']:
-        localDynamoManager.start_local_dynamo()
-    elif env == 'local':
-        logger.warning('running locally without DynamoDB. ' +
-                       'You won\'t be able to save any data.')
+    if env == 'local':
+        if config['dynamoDB']['enabled']:
+            localDynamoManager.start_local_dynamo()
+        else:
+            logger.warning('running locally without DynamoDB. ' +
+                           'You won\'t be able to save any data.')
 
     uvicorn.run(app_server, host=host, port=port)
 
