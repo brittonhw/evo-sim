@@ -1,2 +1,4 @@
 .coverage
 .pytest_cache
+dynamodb-local-metadata.json
+shared-local-instance.db

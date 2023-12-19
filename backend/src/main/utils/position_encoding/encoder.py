@@ -2,12 +2,12 @@ from typing import List
 from src.main.model.dto.animation_data import AnimationData
 
 from src.main.model.dto.creature_positions import CreaturePositionsDTO
-from src.main.config.config2 import config
+from src.main.config.config import config
 
-BYTES_FOR_CREATURE_ID = config["backend"]["encoding"]["byteLengths"][
+BYTES_FOR_CREATURE_ID = config["encoding"]["byteLengths"][
     "creatureId"
 ]
-BYTES_FOR_STEPS = config["backend"]["encoding"]["byteLengths"][
+BYTES_FOR_STEPS = config["encoding"]["byteLengths"][
     "lifecycleSteps"
 ]
 

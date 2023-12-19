@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from src.main.model.dto.evolution_request import EvolutionRequestDTO
 from src.main.model.dto.evolution_response import EvolutionResponseDTO
 from src.main.service.evolution_service import EvolutionService
-from src.main.utils.logger2 import logger
+from src.main.utils.logger import logger
 
 
 router = APIRouter(tags=["Evolution Controller"])

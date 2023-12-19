@@ -11,7 +11,7 @@ interface Props {
 const DotsButton = (props: Props) => {
 
   return (
-    <div className="xs-button left" onClick={() => props.handleClick(props.id)}>
+    <div className="xs-button left" id={props.id} onClick={(e) => props.handleClick(e)}>
       <div
         className="dot"
         style={{

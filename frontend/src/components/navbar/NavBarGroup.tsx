@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import DotsButton from "./DotsButton";
 import "./navbar.css"
 import PlusButton from "./PlusButton";
@@ -24,8 +24,10 @@ const NavBarGroup = (props: Props) => {
 
   const [showDotsModal, setShowDotsModal] = useState(false); // TODO: add dots action items
 
-  const handleClick = (e: string) => {
-    console.log(e);
+  const handleClick = (e: SyntheticEvent) => {
+    e.stopPropagation();
+    const targetId = (e.target as HTMLDivElement).id;
+    console.log("id of button clicked:", targetId);
   };
 
   return (
