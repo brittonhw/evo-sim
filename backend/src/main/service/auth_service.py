@@ -13,6 +13,7 @@ TOKEN_GEN_ALG = config['server']['tokenGeneration']['algorithm']
 JWT_TOKEN_TIME_HOURS = config['server']['tokenGeneration']['hoursUntilExpiry']
 BOARD_COUNT = config['server']['tokenGeneration']['uniqueGameboardsAllowed']
 
+
 class AuthService():
 
     def generate_id(self) -> str:
@@ -33,7 +34,7 @@ class AuthService():
 
         jwt_token = jwt.encode(claims, SECRET_KEY, algorithm=TOKEN_GEN_ALG)
         return jwt_token
-    
+
     def validate_token(self, evo_token: str = Cookie(...)):
         try:
             payload = jwt.decode(evo_token, SECRET_KEY, algorithms=[TOKEN_GEN_ALG])

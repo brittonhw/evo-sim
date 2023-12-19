@@ -25,5 +25,3 @@ def print_startup_message(server_path: str, host: str, port: str, env: str):
     )
 
     print(msg)
-
-

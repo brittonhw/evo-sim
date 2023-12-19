@@ -34,3 +34,7 @@ The ronny bros' **evolution simulator**  inspired by David Randall Miller: https
 - `npm install`
 - `npm run-script dev`
 - visit ui at http://localhost:{port}/
+
+## before pushing
+1) run `flake8 src`
+2) run `pytest`

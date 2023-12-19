@@ -10,7 +10,7 @@ from src.main.utils.position_encoding.encoder \
     import convert_animation_data_to_bytes
 
 
-def get_animation_data(lifecycle_steps = 400) -> AnimationData:
+def get_animation_data(lifecycle_steps=400) -> AnimationData:
     gameboard_size = 256
     population_size = 3500
     creature_positions_list = []
@@ -51,7 +51,3 @@ def test_encode_with_too_many_steps_raises_exception():
                             under test, but it did not.")
     except Exception as ex:
         assert str(ex) == 'not enough bytes to represent steps!'
-
-
-
-

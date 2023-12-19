@@ -10,7 +10,7 @@ handler.setLevel(logging.DEBUG)
 
 formatter = ColoredFormatter(
     '%(log_color)s%(levelname)s:     ' +
-        '%(asctime)s -- %(module)s.%(funcName)s:%(lineno)d -- %(message)s',
+    '%(asctime)s -- %(module)s.%(funcName)s:%(lineno)d -- %(message)s',
     reset=True,
     log_colors={
         'DEBUG': 'cyan',

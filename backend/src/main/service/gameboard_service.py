@@ -55,7 +55,5 @@ class GameboardService:
                 gameboard_str = gameboard_bytes.hex()
                 logger.info("saved gameboard as a string with length %d",
                             len(gameboard_str))
-                
-                f.write(gameboard_str)
 
-                
+                f.write(gameboard_str)
