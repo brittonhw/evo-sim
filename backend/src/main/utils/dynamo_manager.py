@@ -22,17 +22,19 @@ class LocalDynamoManager():
 
     def __init__(self) -> None:
         self.dynamodb_local_process = None
-        self.dynamodb = boto3.client('dynamodb', endpoint_url='http://localhost:8000')
+        self.dynamodb = None
+        self.running = False
 
     def clean_all_tables(self):
         all_tables: List[str] = self.dynamodb.list_tables()['TableNames']
         for table_name in all_tables:
             self.dynamodb.delete_table(TableName=table_name)
-        logger.info("deleted %d tables", len(all_tables))
+        logger.info("deleted %d tables - environment is now clean!", len(all_tables))
 
     def start_local_dynamo(self):
-
         self.dynamodb_local_process = subprocess.Popen(START_COMMAND.split())
+        self.running = True
+        self.dynamodb = boto3.client('dynamodb', endpoint_url='http://localhost:8000')
         time.sleep(2)
         self.clean_all_tables()
 
@@ -41,7 +43,7 @@ class LocalDynamoManager():
             'AttributeType': 'S'
         },
             {
-            'AttributeName': 'time_uploaded',
+            'AttributeName': 'last_modified',
             'AttributeType': 'N'
         }]
         key_schema = [{
@@ -49,7 +51,7 @@ class LocalDynamoManager():
             'KeyType': 'HASH'
         },
             {
-            'AttributeName': 'time_created',
+            'AttributeName': 'last_modified',
             'KeyType': 'RANGE'
         }]
 
@@ -71,5 +73,6 @@ class LocalDynamoManager():
         logger.info("table %s created successfully", TABLE_NAME)
 
     def terminate_local_dynamo(self):
-
-        self.dynamodb_local_process.terminate()
+        self.running = False
+        if self.dynamodb_local_process is not None:
+            self.dynamodb_local_process.terminate()

@@ -1,4 +1,4 @@
-def print_startup_message(server_path: str, host: str, port: str, env: str) -> str:
+def print_startup_message(server_path: str, host: str, port: str, env: str):
     dashes = "".join(["-" for _ in range(60)])
 
     if host == "0.0.0.0":
