@@ -27,6 +27,7 @@ dynamoDB:
   port: 8000
   path_to_dynamo_lib: /Users/elliotbritton/developer/dynamodb_local_latest/DynamoDBLocal_lib
   path_to_dynamo_jar: /Users/elliotbritton/developer/dynamodb_local_latest/DynamoDBLocal.jar
+  table_name: Gameboards
 
 s3:
   port: 9000
