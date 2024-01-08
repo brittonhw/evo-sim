@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Cookie, Depends
 from fastapi.responses import JSONResponse
 from src.main.service.auth_service import AuthService
 
@@ -11,17 +11,22 @@ auth_service = AuthService()
 @router.get("/ping",
             name="health checks",
             description="returns 200")
-async def ping() -> str:
+async def ping(evo_token: str = Cookie(default=None)) -> str:
+
+    if evo_token:
+        print("there was an optional token detected:", evo_token)
     return 'pong!'
 
 
 @router.get("/auth",
-            name="gets a token",
-            description="gets a jwt token")
-async def auth() -> JSONResponse:
-    token = auth_service.generate_token()
+            name="authenticates a token, or returns a new one",
+            description="authenticates a token, or if no token supplied, returns a new one")
+async def auth(evo_token: str = Cookie(default=None)) -> JSONResponse:
+    if not evo_token:
+        print("there was no evo token detected")
+    evo_token = auth_service.generate_first_token()
     response = JSONResponse(content={'message': 'set jwt token in the cookie'})
-    response.set_cookie('evo_token', token)
+    response.set_cookie('evo_token', evo_token)
     return response
 
 

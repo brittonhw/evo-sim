@@ -1,8 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.main.utils.dynamo_manager import LocalDynamoManager
-
+from src.main.utils.local_dynamo_manager import localDynamoManager
 from src.main.config.config import config
 from src.main.utils.logger import logger
 from src.main.controllers.admin_controller import router as admin_controller
@@ -35,7 +34,6 @@ server_path = "/evo-sim"
 app_server.mount(server_path, app)
 
 server_util.print_startup_message(server_path, host, port, env)
-localDynamoManager = LocalDynamoManager()
 
 if __name__ == "__main__":
 

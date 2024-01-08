@@ -3,6 +3,7 @@ from typing import List
 from src.main.config.config import config
 from src.main.utils.logger import logger
 
+from datetime import datetime
 import subprocess
 import time
 import boto3
@@ -38,22 +39,19 @@ class LocalDynamoManager():
         time.sleep(2)
         self.clean_all_tables()
 
-        attribute_definitions = [{
-            'AttributeName': 'board_id',
-            'AttributeType': 'S'
-        },
+        key_schema = [
             {
-            'AttributeName': 'last_modified',
-            'AttributeType': 'N'
-        }]
-        key_schema = [{
-            'AttributeName': 'board_id',
-            'KeyType': 'HASH'
-        },
+                'AttributeName': 'board_id',
+                'KeyType': 'HASH'
+            }
+        ]
+
+        attribute_definitions = [
             {
-            'AttributeName': 'last_modified',
-            'KeyType': 'RANGE'
-        }]
+                'AttributeName': 'board_id',
+                'AttributeType': 'S'
+            }
+        ]
 
         provisioned_throughput = {
             'ReadCapacityUnits': 2,
@@ -70,9 +68,43 @@ class LocalDynamoManager():
         waiter = self.dynamodb.get_waiter('table_exists')
         waiter.wait(TableName=TABLE_NAME)
 
-        logger.info("table %s created successfully", TABLE_NAME)
+        logger.info("table '%s' created successfully", TABLE_NAME)
+
+    def put_gameboard_data(self, gameboard_id: str, board_data: str) -> dict:
+
+        logger.info("saving gameboard id %s", gameboard_id)
+
+        new_item = {
+            'board_id': {
+                'S': gameboard_id,
+            },
+            'last_modified': {
+                'N':  str(int(datetime.utcnow().timestamp()))
+            },
+            'board_data': {
+                'S': board_data
+            },
+        }
+
+        response: dict = self.dynamodb.put_item(
+            TableName=TABLE_NAME, ReturnConsumedCapacity='TOTAL', Item=new_item)
+        return response
+
+    def get_gameboard_data(self, gameboard_id) -> dict:
+
+        response = self.dynamodb.get_item(
+            TableName=TABLE_NAME,
+            Key={
+                'board_id': {'S': gameboard_id}
+            }
+        )
+
+        return response
 
     def terminate_local_dynamo(self):
         self.running = False
         if self.dynamodb_local_process is not None:
             self.dynamodb_local_process.terminate()
+
+
+localDynamoManager = LocalDynamoManager()

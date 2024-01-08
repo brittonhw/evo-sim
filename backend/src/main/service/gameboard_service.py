@@ -1,9 +1,8 @@
 import json
 import os
 
-
 from src.main.utils.gameboard_encoding.encoder import convert_gameboard_to_bytes
-
+from src.main.utils.local_dynamo_manager import localDynamoManager
 from src.main.config.config import config
 from src.main.model.dto.gameboard import GameboardDTO
 from src.main.utils.logger import logger
@@ -38,22 +37,22 @@ class GameboardService:
 
             logger.info("saved gameboard at path %s", object_name)
 
-    def encode_and_save_gameboard(self, gameboard_dto: GameboardDTO):
-        if config["env"] == "local":
+    def encode_and_save_gameboard(self, gameboard_dto: GameboardDTO) -> dict:
 
-            if not os.path.exists(LOCAL_S3_PATH):
-                os.makedirs(LOCAL_S3_PATH)
+        response = {}
 
-            if gameboard_dto.id is None:
-                gameboard_dto.id = "abc123"
+        if config["env"] == "local" and localDynamoManager.running:
+            gameboard_bytes = convert_gameboard_to_bytes(gameboard_dto)
+            gameboard_str = gameboard_bytes.hex()
+            response = localDynamoManager.put_gameboard_data(gameboard_dto.id, gameboard_str)
 
-            object_name = os.path.join(LOCAL_S3_PATH, gameboard_dto.id)
+        return response
+    
+    def read_gameboard(self, gameboard_id) -> dict:
 
-            with open(object_name, "w") as f:
+        response = {}
 
-                gameboard_bytes = convert_gameboard_to_bytes(gameboard_dto)
-                gameboard_str = gameboard_bytes.hex()
-                logger.info("saved gameboard as a string with length %d",
-                            len(gameboard_str))
+        if config["env"] == "local" and localDynamoManager.running:
+            response = localDynamoManager.get_gameboard_data(gameboard_id)
 
-                f.write(gameboard_str)
+        return response

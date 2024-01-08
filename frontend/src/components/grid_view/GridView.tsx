@@ -2,10 +2,10 @@ import List from "./List";
 import Grid from "./Grid";
 import EditableButton from "./EditableButton";
 import "./grid.css";
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 import { useAlert } from "../../contexts/AlertContext";
 import { StickerType } from "../header/HeaderSticker";
-import { EVO_SIM_BASE_URL, postData } from "../../api/RestTemplate";
+import { EVO_SIM_BASE_URL, GAMEBOARD_SAVE_URL, postData } from "../../api/RestTemplate";
 import { ColorMap } from "../../util/Color";
 import { GameboardDTO } from "../../models/dto";
 import { GameboardSize } from "../../models/enum";
@@ -225,7 +225,9 @@ const GridView = ({
       data: gridData,
       encoded_data: [],
     };
-    const saveUrl = EVO_SIM_BASE_URL + "/gameboard/save";
+
+    const saveUrl = EVO_SIM_BASE_URL + GAMEBOARD_SAVE_URL + gameboardDTO.id;
+
     await postData(saveUrl, gameboardDTO)
       .then((x) => {
         console.log("response: " + x);
