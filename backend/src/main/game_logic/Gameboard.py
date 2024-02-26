@@ -2,7 +2,6 @@ import random
 
 from src.main.game_logic.Creature import Creature
 
-
 class Gameboard:
     def __init__(self, size):
         self.board = []
