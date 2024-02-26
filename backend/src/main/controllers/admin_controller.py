@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 from fastapi import APIRouter, Cookie, Depends
 from fastapi.responses import JSONResponse
 from src.main.service.auth_service import AuthService
+from src.main.utils.logger import logger
+
 
 router = APIRouter(tags=["Admin Controller"])
 
@@ -14,7 +16,7 @@ auth_service = AuthService()
 async def ping(evo_token: str = Cookie(default=None)) -> str:
 
     if evo_token:
-        print("there was an optional token detected:", evo_token)
+        logger.info("there was an optional token detected:", evo_token)
     return 'pong!'
 
 
@@ -23,8 +25,11 @@ async def ping(evo_token: str = Cookie(default=None)) -> str:
             description="authenticates a token, or if no token supplied, returns a new one")
 async def auth(evo_token: str = Cookie(default=None)) -> JSONResponse:
     if not evo_token:
-        print("there was no evo token detected")
+        logger.warn("there was no evo token detected")
+
+    logger.info("generating a token for the first time")
     evo_token = auth_service.generate_first_token()
+    
     response = JSONResponse(content={'message': 'set jwt token in the cookie'})
     response.set_cookie('evo_token', evo_token)
     return response
@@ -34,7 +39,8 @@ async def auth(evo_token: str = Cookie(default=None)) -> JSONResponse:
             name="authorized ping",
             description="returns 200 if authorized")
 async def auth_ping(token_payload: dict = Depends(auth_service.validate_token)) -> JSONResponse:
-    created = datetime.fromtimestamp(token_payload['exp']) - timedelta(hours=12)
+    created = datetime.fromtimestamp(
+        token_payload['exp']) - timedelta(hours=12)
 
     diff: timedelta = datetime.now() - created
 

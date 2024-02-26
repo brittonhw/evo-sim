@@ -26,9 +26,11 @@ dynamoDB:
   enabled: true
   port: 8000
   table_name: Gameboards
-  ## update these paths
+
+  ## update these paths ##
   path_to_dynamo_lib: /Users/elliotbritton/developer/dynamodb_local_latest/DynamoDBLocal_lib
   path_to_dynamo_jar: /Users/elliotbritton/developer/dynamodb_local_latest/DynamoDBLocal.jar
+
 
 s3:
   port: 9000

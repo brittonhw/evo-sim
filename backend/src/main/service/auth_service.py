@@ -22,7 +22,6 @@ class AuthService():
         now = str(datetime.utcnow())
         rand = str(random.randint(0, 100))
         new_id = hashlib.sha256((now + rand).encode('utf-8')).hexdigest()[:10]
-        logger.info("generated an id %s", new_id)
         return new_id
 
     def generate_token(self, board_ids: List[str], active_boards: List[str]) -> str:
