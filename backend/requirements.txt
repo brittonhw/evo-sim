@@ -3,3 +3,5 @@ uvicorn==0.22.0
 fastapi==0.98.0
 pydantic
 colorlog
+pyjwt
+boto3

@@ -2,11 +2,11 @@ from typing import List
 
 from src.main.model.dto.animation_data import AnimationData
 from src.main.model.dto.creature_positions import CreaturePositionsDTO
-from src.main.utils.logger2 import logger
-from src.main.config.config2 import config
+from src.main.utils.logger import logger
+from src.main.config.config import config
 
-BYTES_FOR_CREATURE_ID = config['backend']['encoding']['byteLengths']['creatureId']
-BYTES_FOR_STEPS = config['backend']['encoding']['byteLengths']['lifecycleSteps']
+BYTES_FOR_CREATURE_ID = config['encoding']['byteLengths']['creatureId']
+BYTES_FOR_STEPS = config['encoding']['byteLengths']['lifecycleSteps']
 
 
 def divide_but_integer_result_required(numerator, denominator):

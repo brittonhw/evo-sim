@@ -1,4 +1,4 @@
-def print_startup_message(server_path: str, host: str, port: str, env: str) -> str:
+def print_startup_message(server_path: str, host: str, port: str, env: str):
     dashes = "".join(["-" for _ in range(60)])
 
     if host == "0.0.0.0":
@@ -10,7 +10,9 @@ def print_startup_message(server_path: str, host: str, port: str, env: str) -> s
             dashes,
             "RONNY BROS. LLC",
             dashes,
-            "Welcome to 'evo-sim' [" + env + "]",
+            "Welcome to 'evo-sim'",
+            dashes,
+            "Environment: " + env,
             dashes,
             "Check out the Swagger UI at http://{0}:{1}{2}/docs".format(
                 host, port, server_path

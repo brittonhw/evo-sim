@@ -1,26 +1,35 @@
-backend:
-  appName: Evo Sim Service
-  env: local
+appName: Evo Sim Service
+env: local
 
-  server:
-    host: "0.0.0.0"
-    port: 8300
-    allowedOrigins:
-      - "http://localhost:5300"
-      - "http://localhost"
+server:
+  host: "0.0.0.0"
+  port: 8300
+  allowedOrigins:
+    - "http://localhost:5300"
+    - "http://localhost"
 
-    tokenGeneration:
-      algorithm: HS256
-      secret-key: notASecret
+  tokenGeneration:
+    algorithm: HS256
+    secret-key: NotReallyASecretSinceItsLocal
+    hoursUntilExpiry: 12
+    uniqueGameboardsAllowed: 5
 
-  encoding:
-    byteLengths:
-      creatureId: 2
-      lifecycleSteps: 2
-      gameboardSize: 2
-    bitLengths:
-      gameboard_integer: 3
+encoding:
+  byteLengths:
+    creatureId: 2
+    lifecycleSteps: 2
+    gameboardSize: 2
+  bitLengths:
+    gameboard_integer: 3
 
-  s3:
-    port: 9000
-    dataFolder: /localS3
+dynamoDB:
+  enabled: true
+  port: 8000
+  table_name: Gameboards
+  ## update these paths
+  path_to_dynamo_lib: /Users/elliotbritton/developer/dynamodb_local_latest/DynamoDBLocal_lib
+  path_to_dynamo_jar: /Users/elliotbritton/developer/dynamodb_local_latest/DynamoDBLocal.jar
+
+s3:
+  port: 9000
+  dataFolder: /localS3
