@@ -14,7 +14,7 @@ class GameboardService:
     def run_gameboard(self, size: int):
         raise NotImplementedError()
 
-    def save_gameboard(self, gameboard_dto: GameboardDTO) -> GameboardDTO:
+    def save_gameboard(self, gameboard_dto: GameboardDTO):
         if config["env"] == "local":
 
             if not os.path.exists(LOCAL_S3_PATH):
@@ -44,10 +44,11 @@ class GameboardService:
         if config["env"] == "local" and localDynamoManager.running:
             gameboard_bytes = convert_gameboard_to_bytes(gameboard_dto)
             gameboard_str = gameboard_bytes.hex()
-            response = localDynamoManager.put_gameboard_data(gameboard_dto.id, gameboard_str)
+            response = localDynamoManager.put_gameboard_data(
+                str(gameboard_dto.id), gameboard_str)
 
         return response
-    
+
     def read_gameboard(self, gameboard_id) -> dict:
 
         response = {}

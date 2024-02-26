@@ -8,13 +8,10 @@ const InfoView = () => {
 
   useEffect(() => {
     const url = EVO_SIM_BASE_URL + AUTH_URL;
-    try {
-      getData(url);
-      showAlert("Retrieved token", StickerType.SuccessAlert, 3);
-    } catch (error) {
-      console.error("Error fetching animation:", error);
-      showAlert("Could not get token.", StickerType.ErrorAlert, 7);
-    }
+
+    getData(url)
+      .then(() => showAlert("Retrieved token", StickerType.SuccessAlert, 3))
+      .catch(() => showAlert("Could not get token.", StickerType.ErrorAlert, 7));
   }, []);
 
   return (

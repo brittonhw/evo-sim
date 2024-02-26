@@ -37,6 +37,9 @@ export async function getBlob(url: string) {
       }
       return response.blob();
     })
+    .catch((reason)  => {
+      throw new Error("Not ok: " + reason)
+    })
   return response_blob;
 }
 
@@ -50,9 +53,12 @@ export async function getData(url: string) {
   })
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("Network response was not ok" + response);
       }
       return response.json();
+    })
+    .catch((reason)  => {
+      throw new Error("Token not fetched" + reason)
     })
   return response_json;
 }
