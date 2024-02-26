@@ -1,6 +1,6 @@
 import random
 
-from src.main.game_logic.creature import Creature
+from src.main.game_logic.Creature import Creature
 
 
 class Gameboard:
@@ -27,10 +27,10 @@ class Gameboard:
     def set_game(self, num_creatures):
         self.clear()
 
-        for i in range(num_creatures):
+        for _ in range(num_creatures):
             row = random.randint(0, self.size - 1)
             col = random.randint(0, self.size - 1)
-            self.board[row][col] = Creature.Creature(row, col)
+            self.board[row][col] = Creature(row, col)
 
     def update_board(self):
         self.board = self.board
