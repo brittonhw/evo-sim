@@ -1,6 +1,6 @@
 # evo-sim
 
-The ronny bros' **evolution simulator**  inspired by David Randall Miller: https://www.youtube.com/watch?v=N3tRFayqVtk
+The ronny bros' **evolution simulator** is inspired by David Randall Miller: https://www.youtube.com/watch?v=N3tRFayqVtk
 
 ## requirements
 
