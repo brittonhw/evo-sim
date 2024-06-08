@@ -1,3 +1,7 @@
-# react-ui
+## running the frontend locally (MacOS)
 
-Starting with the template vite@latest project
+
+1) `cd frontend/`
+2) `npm install`
+3) `npm run-script dev`
+4) visit ui at http://localhost:{port}/

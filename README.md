@@ -11,28 +11,21 @@ The ronny bros' **evolution simulator**  inspired by David Randall Miller: https
 
 ## running locally (MacOS)
 
-#### 1) set your DynamoDB path
-1) after downloading [DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html), you'll need to find your paths to `dynamodb_local_latest/DynamoDBLocal_lib` and `dynamodb_local_latest/DynamoDBLocal.jar` and update them in the backend `local_config.yaml`
-2) make sure java is available by running `java -version`
-3) that's it! python will start and stop dynamoDB automatically when you run the app.
+#### 1) set up DynamoDB local
+-  after downloading Amazon-provided local implementation of [DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html), you'll need to update `local_config.yaml' to point to your dynamoDB installation files:
+    - `dynamodb_local_latest/DynamoDBLocal_lib`
+      `dynamodb_local_latest/DynamoDBLocal.jar`
+
+- make sure java is available by running `java -version`
+
 
 #### 2) start the backend server
-1) `cd backend/`
-2) add the current directory to your pythonpath
-    - `export PYTHONPATH=$PYTHONPATH:.`
-3) create a venv
-    - `/usr/local/bin/python3.11 -m venv .venv`
-    - `source .venv/bin/activate`
-    - `pip install -r requirements.txt`
-4) start the application
-    - `python src/main/main.py`
-    - explore API's at http://localhost:8300/evo-sim/docs
 
-#### 3) start the frontend ui (in a new terminal)
-- `cd frontend/`
-- `npm install`
-- `npm run-script dev`
-- visit ui at http://localhost:{port}/
+- refer to `/backend/README.md`
+
+#### 3) start the frontend server
+
+- refer to `/frontend/README.md`
 
 ## before pushing
 1) run `flake8 src`
