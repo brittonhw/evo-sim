@@ -13,7 +13,9 @@
 
 
 ## running tests:
-1. run steps 1-3 above, and then run `pytest`
+1. run steps 1-3 above
+2. run `pip install -r requirements-test.txt`
+3. run `pytest`
 
 ## code format:
 1. run steps 1-3 above, and then run `flake8 src`

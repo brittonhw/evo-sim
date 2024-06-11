@@ -28,5 +28,5 @@ The ronny bros' **evolution simulator**  inspired by David Randall Miller: https
 - refer to `/frontend/README.md`
 
 ## before pushing
-1) run `flake8 src`
-2) run `pytest`
+
+- ensure all test cases are passing and code is linted, as in `/backend/README.md`
