@@ -45,7 +45,8 @@ class GameboardService:
             gameboard_bytes = convert_gameboard_to_bytes(gameboard_dto)
             gameboard_str = gameboard_bytes.hex()
             response = localDynamoManager.put_gameboard_data(
-                str(gameboard_dto.id), gameboard_str)
+                str(gameboard_dto.id), gameboard_str
+            )
 
         return response
 
