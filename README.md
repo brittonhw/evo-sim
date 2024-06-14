@@ -40,4 +40,4 @@ The ronny bros' **evolution simulator** is inspired by David Randall Miller: htt
     - `cd backend/`
     - `flake8 src`
     - `pytest`
-3) if you took additional steps to set up your project locally not listed in README.md, please update it
+3) if you took additional steps to set up your project locally not listed in README.md, please update it!
