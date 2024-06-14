@@ -44,6 +44,7 @@ jobs:
       with:
         pytest-xml-coverage-path: backend/testing-results/coverage.xml
         junitxml-path: backend/testing-results/pytest.xml
+      if: github.event_name == 'pull_request'
 
     - name: Save test results folder
       uses: actions/upload-artifact@v3
