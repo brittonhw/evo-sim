@@ -12,10 +12,10 @@ from src.main.utils import server_util
 
 host = config["server"]["host"]
 port = config["server"]["port"]
-appName = config["appName"]
 env = config["env"]
+appName = config["appName"] + " [{0}]".format(env)
 
-app = FastAPI(title=appName, description="**Environment: {0}**".format(env))
+app = FastAPI(title=appName)
 app.include_router(admin_controller)
 app.include_router(game_controller, prefix="/gameboard")
 app.include_router(evolution_controller, prefix="/evolution")
