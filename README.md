@@ -4,7 +4,7 @@ The ronny bros' **evolution simulator**  inspired by David Randall Miller: https
 
 ## requirements
 
-- [Python 3.11](https://www.python.org/downloads/)
+- [Python 3.12](https://www.python.org/downloads/)
 - [NodeJS 20](https://nodejs.org/en/download)
 - [Java 17](https://www.oracle.com/java/technologies/downloads/#java17)
 - [Amazon DynamoDB Local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
