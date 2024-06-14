@@ -15,7 +15,7 @@ port = config["server"]["port"]
 appName = config["appName"]
 env = config["env"]
 
-app = FastAPI(title=appName, description="**{0} implmementation**".format(env))
+app = FastAPI(title=appName, description="**Environment: {0}**".format(env))
 app.include_router(admin_controller)
 app.include_router(game_controller, prefix="/gameboard")
 app.include_router(evolution_controller, prefix="/evolution")
