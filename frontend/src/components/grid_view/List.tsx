@@ -1,7 +1,7 @@
 import "./grid.css";
 import { drawingControlText } from "./GridView";
 import { useEffect, useRef } from "react";
-import { CircleFill } from "react-bootstrap-icons";
+// import { CircleFill } from "react-bootstrap-icons";
 
 type Props = {
   id: number[];

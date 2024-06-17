@@ -2,7 +2,7 @@ import { useAlert } from "../../contexts/AlertContext";
 import HeaderSticker, { StickerType } from "./HeaderSticker";
 
 const Header = () => {
-  const { alert, showAlert } = useAlert();
+  const { alert } = useAlert();
   return (
     <div className="header">
       <div style={{ display: "flex" }}>
