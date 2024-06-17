@@ -1,6 +1,6 @@
 # evo-sim
 
-The ronny bros' **evolution simulator**  inspired by David Randall Miller: https://www.youtube.com/watch?v=N3tRFayqVtk
+The ronny bros' **evolution simulator** is inspired by David Randall Miller: https://www.youtube.com/watch?v=N3tRFayqVtk
 
 ## requirements
 
@@ -11,22 +11,19 @@ The ronny bros' **evolution simulator**  inspired by David Randall Miller: https
 
 ## running locally (MacOS)
 
-#### 1) set up DynamoDB local
--  after downloading Amazon-provided local implementation of [DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html), you'll need to update `local_config.yaml' to point to your dynamoDB installation files:
-    - `dynamodb_local_latest/DynamoDBLocal_lib`
-      `dynamodb_local_latest/DynamoDBLocal.jar`
-
-- make sure java is available by running `java -version`
-
-
-#### 2) start the backend server
-
+#### 1) start the backend server
 - refer to `/backend/README.md`
 
-#### 3) start the frontend server
-
+#### 2) start the frontend server
 - refer to `/frontend/README.md`
 
 ## before pushing
-
 - ensure all test cases are passing and code is linted, as in `/backend/README.md`
+
+## contributing to project
+1) create an issue in the 'issues' tab of the project's github, and create a branch that links to the issue
+2) after implementing your change, test your code 
+    - `cd backend/`
+    - `flake8 src`
+    - `pytest`
+3) if you took additional steps to set up your project locally not listed in README.md, please update it!

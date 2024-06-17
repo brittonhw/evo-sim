@@ -9,9 +9,6 @@ const AddNewSimulation = (props: Props) => {
   const showColor = "#898989";
   const hideColor = "#f7f7f5";
 
-  const handleClick = (e: string) => {
-    console.log(e);
-  };
 
   return (
     <div
