@@ -1,5 +1,12 @@
 ## running the backend locally (MacOS)
 
+#### 1) set your DynamoDB path
+1) after downloading [DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html), you'll need to find your paths to `dynamodb_local_latest/DynamoDBLocal_lib` and `dynamodb_local_latest/DynamoDBLocal.jar` and update them in the backend `local_config.yaml`
+2) make sure java is available by running `java -version`
+3) that's it! python will start and stop dynamoDB automatically when you run the app.
+
+#### 2) launch the application
+
 1) `cd backend/`
 2) add the current directory to your pythonpath
     - `export PYTHONPATH=$PYTHONPATH:.`
@@ -17,5 +24,5 @@
 2. run `pip install -r requirements-test.txt`
 3. run `pytest`
 
-## code format:
+## formatting your code:
 1. run steps 1-3 above, and then run `flake8 src`
