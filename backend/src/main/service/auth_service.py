@@ -57,6 +57,7 @@ class AuthService:
 
         payload: dict = self.validate_token(evo_token)
         token_claims = JWTTokenClaims(**payload)
+        logger.info("token_claims:", vars(token_claims.board_ids))
         if gameboard_id not in token_claims.board_ids:
             raise HTTPException(
                 status_code=401, detail="this gameboard is not in allowed list"

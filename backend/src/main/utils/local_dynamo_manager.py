@@ -30,7 +30,7 @@ class LocalDynamoManager:
         all_tables: List[str] = self.dynamodb.list_tables()["TableNames"]
         for table_name in all_tables:
             self.dynamodb.delete_table(TableName=table_name)
-        logger.info("deleted %d tables - environment is now clean!", len(all_tables))
+        logger.info("deleted %d tables; environment clean", len(all_tables))
 
     def start_local_dynamo(self):
         self.dynamodb_local_process = subprocess.Popen(START_COMMAND.split())
@@ -55,7 +55,7 @@ class LocalDynamoManager:
         waiter = self.dynamodb.get_waiter("table_exists")
         waiter.wait(TableName=TABLE_NAME)
 
-        logger.info("table '%s' created successfully", TABLE_NAME)
+        logger.info("created table '%s'", TABLE_NAME)
 
     def put_gameboard_data(self, gameboard_id: str, board_data: str) -> dict:
 
@@ -65,7 +65,7 @@ class LocalDynamoManager:
             "board_id": {
                 "S": gameboard_id,
             },
-            "last_modified": {"N": str(int(datetime.utcnow().timestamp()))},
+            "last_modified": {"N": str(int(time.now(datetime.UTC)))},
             "board_data": {"S": board_data},
         }
 

@@ -1,5 +1,5 @@
 # Use the official Python base image
-FROM python:3.9-slim AS stage1
+FROM python:3.12-slim AS stage1
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -12,7 +12,7 @@ COPY bash/create_venv.sh ./scripts/create_venv.sh
 RUN chmod +x scripts/create_venv.sh
 RUN ./scripts/create_venv.sh
 
-FROM python:3.9-slim
+FROM python:3.12-slim
 COPY --from=stage1 /app/dependencies /app/dependencies
 
 ARG LOCAL_USER=evo_sim

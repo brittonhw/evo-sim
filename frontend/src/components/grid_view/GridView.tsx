@@ -54,9 +54,6 @@ const GridView = ({
     drawingControls.clear
   );
 
-  // const [inputCols, setInputCols] = useState(64);
-  // const [inputRows, setInputRows] = useState(64);
-
   const handleRowChange = (event: any) => {
     console.log(event);
     let valueInteger: number = parseInt(event.target.value);

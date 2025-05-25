@@ -29,7 +29,6 @@ const List = (props: Props) => {
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
-    // Clean up the event listener on component unmount
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };

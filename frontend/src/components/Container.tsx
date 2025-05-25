@@ -1,6 +1,7 @@
 import Navbar from "./navbar/NavBar";
 import GridView from "./grid_view/GridView";
 import "./navbar/navbar.css";
+import "./container.css";
 import InfoView from "./info_view/InfoView";
 import AnalyticsView from "./analytics_view/AnalyticsView";
 import Header from "./header/Header";
@@ -19,12 +20,12 @@ const Container = () => {
   );
 
   return (
-    <>
+    <> 
       <Navbar
         selectedMenuId={selectedMenuId}
         setSelectedMenuId={setSelectedMenuId}
       />
-      <div style={{ display: "inline" }}>
+      <div className="main-col">
         <Header />
         {selectedMenuId == "1a" ? <InfoView /> : null}
         {selectedMenuId == "1b" ? (
