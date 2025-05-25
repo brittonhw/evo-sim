@@ -1,13 +1,11 @@
 import random
 
 
-from src.main.utils.position_encoding.decoder \
-    import convert_bytes_to_animation_dto
+from src.main.utils.position_encoding.decoder import convert_bytes_to_animation_dto
 from src.main.model.dto.animation_data import AnimationData
 from src.main.utils.evolution_util import move_random_direction
 from src.main.model.dto.creature_positions import CreaturePositionsDTO
-from src.main.utils.position_encoding.encoder \
-    import convert_animation_data_to_bytes
+from src.main.utils.position_encoding.encoder import convert_animation_data_to_bytes
 
 
 def get_animation_data(lifecycle_steps=400) -> AnimationData:
@@ -22,8 +20,7 @@ def get_animation_data(lifecycle_steps=400) -> AnimationData:
         ), random.randrange(0, gameboard_size)
         positions = [last_position]
         for _ in range(400 - 1):
-            newest_position = move_random_direction(
-                positions[-1], gameboard_size)
+            newest_position = move_random_direction(positions[-1], gameboard_size)
             positions.append(newest_position)
         creature_positions_dto.position_data = positions
         creature_positions_list.append(creature_positions_dto)
@@ -47,7 +44,9 @@ def test_encode_with_too_many_steps_raises_exception():
 
     try:
         convert_animation_data_to_bytes(animation_data)
-        raise RuntimeError("this function should have thrown an error\
-                            under test, but it did not.")
+        raise RuntimeError(
+            "this function should have thrown an error\
+                            under test, but it did not."
+        )
     except Exception as ex:
-        assert str(ex) == 'not enough bytes to represent steps!'
+        assert str(ex) == "not enough bytes to represent steps!"

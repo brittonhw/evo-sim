@@ -29,7 +29,6 @@ async def auth(evo_token: str = Cookie(default=None)) -> JSONResponse:
 
     logger.info("generating a token for the first time")
     evo_token = auth_service.generate_first_token()
-
     response = JSONResponse(content={"message": "set jwt token in the cookie"})
     response.set_cookie("evo_token", evo_token)
     return response

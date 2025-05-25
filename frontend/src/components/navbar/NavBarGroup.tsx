@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent } from "react";
 import DotsButton from "./DotsButton";
 import "./navbar.css"
 import PlusButton from "./PlusButton";
@@ -22,7 +22,7 @@ const NavBarGroup = (props: Props) => {
   const hideColor = "#f7f7f5";
   const selectedColor = "#EDEDED"
 
-  const [showDotsModal, setShowDotsModal] = useState(false); // TODO: add dots action items
+  // const [showDotsModal, setShowDotsModal] = useState(false); // TODO: add dots action items
 
   const handleClick = (e: SyntheticEvent) => {
     e.stopPropagation();
@@ -49,7 +49,7 @@ const NavBarGroup = (props: Props) => {
           />
         </div>
       </div>
-      {props.menuItems.map((item: MenuItem, idx: number) => (
+      {props.menuItems.map((item: MenuItem) => (
         <div
           className="navbar-item"
           id={item.id}

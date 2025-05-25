@@ -6,6 +6,7 @@ server:
   port: 8300
   allowedOrigins:
     - "http://localhost:5300"
+    - "http://localhost:3000"
     - "http://localhost"
 
   tokenGeneration:
