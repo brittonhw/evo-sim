@@ -21,7 +21,7 @@ The ronny bros' **evolution simulator** is inspired by David Randall Miller: htt
 2) add the current directory to your pythonpath
     - `export PYTHONPATH=$PYTHONPATH:.`
 3) create a venv
-    - `/usr/local/bin/python3.11 -m venv .venv`
+    - `/usr/local/bin/python3.13 -m venv .venv`
     - `source .venv/bin/activate`
     - `pip install -r requirements.txt`
 4) start the application
@@ -30,6 +30,9 @@ The ronny bros' **evolution simulator** is inspired by David Randall Miller: htt
 
 #### 3) start the frontend ui (in a new terminal)
 - `cd frontend/`
+- install node:
+    - `brew install node`
+    - `node -v` (last ran v25.4.0)
 - `npm install`
 - `npm run-script dev`
 - visit ui at http://localhost:{port}/
