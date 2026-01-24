@@ -35,7 +35,10 @@ class LocalDynamoManager():
     def start_local_dynamo(self):
         self.dynamodb_local_process = subprocess.Popen(START_COMMAND.split())
         self.running = True
-        self.dynamodb = boto3.client('dynamodb', endpoint_url='http://localhost:8000')
+        self.dynamodb = boto3.client('dynamodb',
+                                     region_name='us-east-1',
+                                     endpoint_url='http://localhost:8000'
+                                     )
         time.sleep(2)
         self.clean_all_tables()
 

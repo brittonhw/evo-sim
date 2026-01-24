@@ -24,7 +24,7 @@ encoding:
 
 dynamoDB:
   enabled: true
-  port: 8000
+  port: 8100
   table_name: Gameboards
 
   ## update these paths ##
